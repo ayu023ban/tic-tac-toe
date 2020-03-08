@@ -1,0 +1,18 @@
+.container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 600px;
+    height: 600px;
+    border:1px solid red;
+    margin:50px auto
+}
+.box{
+    border: 0.5px solid black;
+ 
+}
+.cross{
+    background-image: url("./cross.png");
+}
+.zero{
+    background-image: url("./zero.png");
+}
