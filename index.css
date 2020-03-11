@@ -1,3 +1,4 @@
+
 .container{
     display: grid;
     grid-template-columns: auto auto auto;
@@ -15,4 +16,45 @@
 }
 .zero{
     background-image: url("./zero.png");
+}
+#custom-confirm{
+    position: absolute;
+    width:600px;
+    height: 300px;
+    margin:100px 651px;
+    background-color: darkgrey;
+    text-align: center;
+}
+#message{
+    position: relative;
+    text-align: center;
+    top: 40px;
+    color: black;
+    background-color: aqua;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 40px;
+    width: 100%;
+}
+#option1{
+    background-color: blue;
+    position: relative;
+    width:100px;
+    height:60px;
+    z-index: 30;
+    top:150px;
+    left:110px;
+    cursor:pointer;
+}
+#option2{
+    background-color: blue;
+    position: relative;
+    width:100px;
+    height:60px;
+    z-index: 30;
+    top:90px;
+    left:400px;
+    cursor:pointer;
+}
+.none{
+    display:none;
 }
