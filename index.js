@@ -212,3 +212,12 @@ async function modeSelector() {
     }
   );
 }
+
+function mango(){
+  const ma = document.querySelector(".page");
+  ma.classList.add("gone");
+  const fa = document.querySelector(".container");
+  fa.classList.add("gone");
+  // ma.classList.remove('gone');
+  // fa.classList.remove("gone")
+}

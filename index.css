@@ -1,15 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    background-image: linear-gradient(40deg, rgb(69,202,252),rgb(48,63,159));
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100vh;
 
+}
+/* .page{
+    background-color: white;
+    width:650px;
+    height:650px;
+    border:1px solid black;
+    margin:auto;
+    margin-top: 80px;
+    z-index: 2;
+} */
+.page2 ,.page3,.page{
+    background-color: white;
+    width:650px;
+    height:650px;
+    border:0.5px solid gray;
+    position: absolute;
+    z-index: 0;
+    top:110px;
+    box-sizing: border-box;
+    left:50%;
+    margin-left:-325px;
+    transform-origin: center;
+    transform: rotate(2.5deg);
+}
+.page3{
+    transform:rotate(-2.5deg);
+}
+.page{
+    transform:rotate(0);
+    z-index: 2;
+}
 .container{
+    position: relative;
+    top:50px;
     display: grid;
     grid-template-columns: auto auto auto;
     width: 600px;
     height: 600px;
-    border:1px solid red;
-    margin:50px auto
+    margin:50px auto;
+    z-index: 5;
+    transition: 2s;
 }
-.box{
-    border: 0.5px solid black;
- 
+#box1, #box2, #box0,#box3,#box4,#box5{
+    border-bottom: 5px dashed black;
+}
+#box0,#box1,#box3,#box4,#box6,#box7{
+    border-right: 5px dashed black;
 }
 .cross{
     background-image: url("./cross.png");
@@ -24,6 +69,7 @@
     margin:100px 651px;
     background-color: darkgrey;
     text-align: center;
+    z-index: 10;
 }
 #message{
     position: relative;
@@ -57,4 +103,32 @@
 }
 .none{
     display:none;
+}
+@keyframes mango{
+    0%{
+        translate: 100vw;
+    }
+    20%{
+        display:none;
+    }
+   40% {
+        z-index: -5;
+    }
+    60%{
+        translate:-50vw;
+    }
+    80%{
+        z-index:0;
+    }
+    90%{
+        display:grid;
+    }
+    100%{
+        translate:0;
+    }
+}
+.gone{
+    animation-name: mango;
+    animation-duration: 2s;
+
 }
