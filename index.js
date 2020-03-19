@@ -145,29 +145,41 @@ function resultPrinter(mode) {
     resultDiv.innerHTML = "<h1> the match is drawn.</h1>";
   }
 }
-const confirm = (message, option1, option2, function1, function2) => {
+const confirm = (question, option1, option2, function1, function2) => {
   return new Promise((resolve, reject) => {
     confirmdiv = document.querySelector("#custom-confirm");
-    messagediv = document.querySelector("#message");
+    heading = document.querySelector("#heading");
+    questiondiv = document.querySelector("#question");
     option1div = document.querySelector("#option1");
     option2div = document.querySelector("#option2");
+    container = document.querySelector("#container");
+    reset = document.querySelector("#reset")
+    container.classList.add("none");
+    reset.classList.add("none");
+    heading.classList.remove("none");
     confirmdiv.classList.remove("none");
-    messagediv.classList.remove("none");
+    questiondiv.classList.remove("none");
     option1div.classList.remove("none");
     option2div.classList.remove("none");
-    messagediv.innerHTML = message;
+    questiondiv.innerHTML = question;
     option1div.innerHTML = option1;
     option2div.innerHTML = option2;
     option1div.addEventListener("click", () => {
+      container.classList.remove("none");
+      reset.classList.remove("none");
+      heading.classList.add("none");
       confirmdiv.classList.add("none");
-      messagediv.classList.add("none");
+      questiondiv.classList.add("none");
       option1div.classList.add("none");
       option2div.classList.add("none");
       resolve(function1());
     });
     option2div.addEventListener("click", () => {
+      container.classList.remove("none");
+      reset.classList.remove("none");
+      heading.classList.add("none");
       confirmdiv.classList.add("none");
-      messagediv.classList.add("none");
+      questiondiv.classList.add("none");
       option1div.classList.add("none");
       option2div.classList.add("none");
       reject(function2());
@@ -197,11 +209,11 @@ async function reset() {
   );
 }
 async function modeSelector() {
-  let message = "Want to play multiplayer of With the Greate A.I?";
+  let question = "Want to play multiplayer of With the Greate A.I?";
   let option1 = "Multiplayer";
   let option2 = "With A.I";
   let mango = await confirm(
-    message,
+    question,
     option1,
     option2,
     () => {
@@ -211,13 +223,4 @@ async function modeSelector() {
       mode = "computer";
     }
   );
-}
-
-function mango(){
-  const ma = document.querySelector(".page");
-  ma.classList.add("gone");
-  const fa = document.querySelector(".container");
-  fa.classList.add("gone");
-  // ma.classList.remove('gone');
-  // fa.classList.remove("gone")
 }

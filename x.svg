@@ -1,0 +1,5 @@
+<svg height="1000" width="1000" xmlns="http://www.w3.org/2000/svg">
+    <path d="M150 150 L300 300 " stroke="black" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
+    <path d="M150 300 L 300 150" stroke="black" stroke-width="10" stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
+    
+</svg>
