@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <title>tic-tac-toe</title>
-    <link rel="stylesheet" href="./index.css" />
-  </head>
-  <body>
-    <div class="wrapper">
-      <button id="reset" class="none">
-        <img src="./icons8-reset-64.png" alt="Reset" srcset="" />
-      </button>
-      <div class="none" id="custom-confirm">
-        <div class="none" id="heading">Tic Tac Toe</div>
-        <div class="none" id="question"></div>
-        <div class="optioncontainer">
-          <div class="none" id="option1"></div>
-          <div class="none" id="option2"></div>
-        </div>
-      </div>
-      <div class="page2"></div>
-      <div class="page3"></div>
-      <div class="page"></div>
-      <div class="container" id="container">
-        <div class="box" id="box0"></div>
-        <div class="box" id="box1"></div>
-        <div class="box" id="box2"></div>
-        <div class="box" id="box3"></div>
-        <div class="box" id="box4"></div>
-        <div class="box" id="box5"></div>
-        <div class="box" id="box6"></div>
-        <div class="box" id="box7"></div>
-        <div class="box" id="box8"></div>
-      </div>
 
-      <div id="result"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap" rel="stylesheet" />
+  <!-- <script src="https://kit.fontawesome.com/648634b9ad.js" crossorigin="anonymous"></script> -->
+  <script src="./fontawesome.js"></script>
+  <title>tic-tac-toe</title>
+  <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="none" id="custom-confirm">
+      <div class="none" id="heading">Tic Tac Toe</div>
+      <div class="none" id="question"></div>
+      <div class="optioncontainer">
+        <div class="none" id="option1"></div>
+        <div class="none" id="option2"></div>
+      </div>
     </div>
-    <script src="./index.js"></script>
-  </body>
+    <div class="page2"></div>
+    <div class="page3"></div>
+    <div class="page">
+      <button id="sound"><i class="fas fa-volume-up"></i></button>
+      <button id="resetcurrent">Restart</button>
+      <button id="reset" class="none">
+        <i class="fas fa-undo"></i>
+      </button>
+    </div>
+    <div class="container" id="container">
+      <div class="box" id="box0"></div>
+      <div class="box" id="box1"></div>
+      <div class="box" id="box2"></div>
+      <div class="box" id="box3"></div>
+      <div class="box" id="box4"></div>
+      <div class="box" id="box5"></div>
+      <div class="box" id="box6"></div>
+      <div class="box" id="box7"></div>
+      <div class="box" id="box8"></div>
+    </div>
+
+    <div id="result"></div>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
 </html>

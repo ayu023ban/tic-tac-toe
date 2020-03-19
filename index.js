@@ -209,7 +209,7 @@ async function reset() {
   );
 }
 async function modeSelector() {
-  let question = "Want to play multiplayer of With the Greate A.I?";
+  let question = "Want to play multiplayer or With the Greate A.I?";
   let option1 = "Multiplayer";
   let option2 = "With A.I";
   let mango = await confirm(
