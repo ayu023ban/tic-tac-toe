@@ -9,6 +9,9 @@
   background-size: cover;
   height: 100vh;
   font-family: "Bubblegum Sans", cursive;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-around;
 }
 
 .page2,
@@ -20,7 +23,6 @@
   border: 0.5px solid gray;
   position: absolute;
   z-index: 0;
-  top: 110px;
   box-sizing: border-box;
   left: 50%;
   margin-left: -325px;
@@ -40,9 +42,10 @@
   grid-template-columns: auto auto auto;
   width: 400px;
   height: 400px;
-  margin: 0px auto;
+  margin-left: -200px;
+  left: 50%;
   z-index: 5;
-  top: 225px;
+  top: 150px;
 }
 #box1,
 #box2,
@@ -67,11 +70,12 @@
   background-image: url("./zero.png");
 }
 #custom-confirm {
-  position: relative;
+  position: absolute;
   width: 600px;
   height: 600px;
-  margin: 0 auto;
-  top: 180px;
+  left: 50%;
+  top: 115px;
+  margin-left: -300px;
   text-align: center;
   z-index: 10;
 }
@@ -155,6 +159,85 @@
   top: 571px;
   left: 258px;
   background-image: linear-gradient(40deg, #97e1e1, #00a0ff);
-  color:white;
-  font-size:30px;
+  color: white;
+  font-size: 30px;
+}
+
+.x2,
+.x1 {
+  stroke-dashoffset: 212px;
+  stroke-dasharray: 214px;
+  opacity: 0;
+  transition: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.xanimate {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+.o1 {
+  stroke-dashoffset: 389px;
+  stroke-dasharray: 389px;
+  transition: 1s;
+  transition-timing-function: ease-in-out;
+}
+.oanimate {
+  stroke-dashoffset: 0;
+}
+.x {
+  position: absolute;
+}
+.o {
+  position: absolute;
+}
+
+.player1picdiv {
+  width: 300px;
+  height: 500px;
+  position: relative;
+  top: 245px;
+}
+.player1pic,
+.player2pic {
+  width: 300px;
+  height: auto;
+}
+
+.gameboard {
+  position: relative;
+  width: 670px;
+  height: 670px;
+  left: 50%;
+  margin-left: -335px;
+  top: 100px;
+}
+.player2picdiv {
+  width: 300px;
+  height: 500px;
+  position: relative;
+  top: 245px;
+}
+.player2pic {
+  position: absolute;
+}
+#player1scoreboard, #player2scoreboard {
+  position: relative;
+  width: 147px;
+  margin: auto;
+  background-color: white;
+  height: 41px;
+  padding:5px 10px;
+  box-sizing: border-box;
+  font-size: 26px;
+  color: #0c5460;
+  font-weight: bolder;
+  font-family: LuckiestGuy;
+  border-radius: 10px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.16);
+  border-bottom-color: #a8e4ef;
+  border-bottom-width: 2px;
+}
+#p1score,#p2score{
+  float: right;
 }

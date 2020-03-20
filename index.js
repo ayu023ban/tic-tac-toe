@@ -2,8 +2,11 @@ const zero = "./zero.png";
 const cross = "./cross.png";
 let turnOfPlayer1 = true;
 const position = document.querySelectorAll(".box");
+const xsvg = document.getElementsByClassName("x");
+const osvg = document.getElementsByClassName("o");
 const resultDiv = document.querySelector("#result");
 const moderadio = document.getElementsByName("mode");
+let scoreboardarray = [0, 0, 0]
 let mode;
 
 const resetButton = document.querySelector("#reset");
@@ -21,13 +24,15 @@ async function play(pos) {
     let turnplayer = turn();
 
     if (turnplayer) {
-      position[pos].className = "cross box";
+      // position[pos].className = "cross box";
+      xanimate(xsvg[pos]);
       gameArray[pos] = 1;
     } else if (mode == "player") {
-      position[pos].className = "zero box";
+      // position[pos].className = "zero box";
+      oanimate(osvg[pos]);
       gameArray[pos] = 2;
     }
-    resultPrinter();
+    // resultPrinter();
     if (mode == "computer") {
       let mango = await computerplay();
     }
@@ -66,6 +71,7 @@ function resultChecker(gameArray) {
   return 0;
 }
 function gameCompleteChecker(gameArray) {
+  if (resultChecker(gameArray) == 1 || resultChecker(gameArray) == 2) return true;
   for (let i = 0; i < 9; i++) {
     if (gameArray[i] == 0) return false;
   }
@@ -124,14 +130,16 @@ const computerplay = () => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let move = bestMove(gameArray);
-      position[move].className = "zero box";
+      // position[move].className = "zero box";
+      oanimate(osvg[move]);
       gameArray[move] = 2;
       turn();
       resolve("magno");
-    }, 300);
+    }, 1000);
   });
 };
 function resultPrinter(mode) {
+  scoreboardupdater();
   result = resultChecker(gameArray);
   if (result == 1) {
     resultDiv.innerHTML = "<h1>congratulations player 1 won the match</h1>";
@@ -152,36 +160,48 @@ const confirm = (question, option1, option2, function1, function2) => {
     questiondiv = document.querySelector("#question");
     option1div = document.querySelector("#option1");
     option2div = document.querySelector("#option2");
+    type1 = [heading,confirmdiv,questiondiv,option1div,option2div];
+
+
     container = document.querySelector("#container");
-    reset = document.querySelector("#reset")
-    container.classList.add("none");
-    reset.classList.add("none");
-    heading.classList.remove("none");
-    confirmdiv.classList.remove("none");
-    questiondiv.classList.remove("none");
-    option1div.classList.remove("none");
-    option2div.classList.remove("none");
+    reset = document.querySelector("#reset");
+    player1picdiv = document.getElementsByClassName("player1picdiv")[0];
+    player2picdiv = document.getElementsByClassName("player2picdiv")[0];
+    resetcurrent = document.querySelector("#resetcurrent")
+    type2 = [container,reset,player1picdiv,player2picdiv,resetcurrent]
+
+
+    wrapper = document.getElementsByClassName("wrapper")[0];
+    wrapper.style.gridTemplateColumns = "auto";
+
+
+    type1.forEach(function(el) {
+      el.classList.remove("none")
+    })
+    type2.forEach(function(el) {
+      el.classList.add("none")
+    })
     questiondiv.innerHTML = question;
     option1div.innerHTML = option1;
     option2div.innerHTML = option2;
     option1div.addEventListener("click", () => {
-      container.classList.remove("none");
-      reset.classList.remove("none");
-      heading.classList.add("none");
-      confirmdiv.classList.add("none");
-      questiondiv.classList.add("none");
-      option1div.classList.add("none");
-      option2div.classList.add("none");
+      type1.forEach(function(el) {
+        el.classList.add("none")
+      })
+      type2.forEach(function(el) {
+        el.classList.remove("none")
+      })
+      wrapper.style.gridTemplateColumns = "auto auto auto";
       resolve(function1());
     });
     option2div.addEventListener("click", () => {
-      container.classList.remove("none");
-      reset.classList.remove("none");
-      heading.classList.add("none");
-      confirmdiv.classList.add("none");
-      questiondiv.classList.add("none");
-      option1div.classList.add("none");
-      option2div.classList.add("none");
+      type1.forEach(function(el) {
+        el.classList.add("none")
+      })
+      type2.forEach(function(el) {
+        el.classList.remove("none")
+      })
+      wrapper.style.gridTemplateColumns = "auto auto auto";
       reject(function2());
     });
   });
@@ -198,11 +218,14 @@ async function reset() {
     () => {
       for (let i = 0; i < 9; i++) {
         gameArray[i] = 0;
-        position[i].classList.remove("zero");
-        position[i].classList.remove("cross");
+        // position[i].classList.remove("zero");
+        // position[i].classList.remove("cross");
+        xremover(xsvg[i])
+        oremover(osvg[i])
         resultDiv.innerHTML = "";
         turnOfPlayer1 = true;
       }
+      scoreboardarray = [0, 0, 0]
       modeSelector();
       return true;
     }
@@ -218,9 +241,88 @@ async function modeSelector() {
     option2,
     () => {
       mode = "player";
+      player2picselector();
+      scoreboardupdater();
     },
     () => {
       mode = "computer";
+      player2picselector();
+      scoreboardupdater();
     }
   );
+}
+
+const oanimator = (o1) => {
+  return new Promise((resolve, reject) => {
+    o1.classList.add("oanimate");
+    setTimeout(() => {
+      resolve("ma");
+    }, 1000)
+
+  });
+}
+async function oanimate(oo) {
+  let o = oo.getElementById("o1");
+  const man = await oanimator(o);
+}
+
+const x1animator = (x1, x2) => {
+  return new Promise((resolve, reject) => {
+    x1.classList.add("xanimate");
+    setTimeout(() => {
+      resolve(x2);
+    }, 500)
+
+  });
+}
+const x2animator = (x2) => {
+  return new Promise((resolve, reject) => {
+    x2.classList.add("xanimate");
+    resolve("fa");
+  });
+}
+async function xanimate(x) {
+  let x1 = x.getElementById("x1")
+  let x2 = x.getElementById("x2")
+  const man = await x1animator(x1, x2);
+  const appl = await x2animator(man);
+}
+const oremover = (o) => {
+  let o1 = o.getElementById("o1")
+  o1.classList.remove("oanimate")
+}
+const xremover = (x) => {
+  let x1 = x.getElementById("x1")
+  let x2 = x.getElementById("x2")
+  x1.classList.remove("xanimate")
+  x2.classList.remove("xanimate")
+}
+
+function scoreboardupdater() {
+  let p1scorespan = document.querySelector("#p1score")
+  let p2scorespan = document.querySelector("#p2score")
+  let p2scoreboard = document.querySelector("#player2name")
+  if (resultChecker(gameArray) == 1) scoreboardarray[0]++;
+  if (resultChecker(gameArray) == 0 && gameCompleteChecker(gameArray)) scoreboardarray[1]++;
+  if (resultChecker(gameArray) == 2) scoreboardarray[2]++;
+  if (mode == "player") {
+    p2scoreboard.innerHTML = "Player2"
+  }
+  else {
+    p2scoreboard.innerHTML = "A.I"
+  }
+  p1scorespan.innerHTML = scoreboardarray[0];
+  p2scorespan.innerHTML = scoreboardarray[2];
+}
+
+function player2picselector(){
+  player2pic = document.getElementsByClassName("player2pic");
+  if(mode=="player"){
+    player2pic[0].classList.remove("none");
+    player2pic[1].classList.add("none");
+  }
+  else {
+    player2pic[0].classList.add("none");
+    player2pic[1].classList.remove("none");
+  }
 }
