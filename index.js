@@ -6,7 +6,7 @@ const xsvg = document.getElementsByClassName("x");
 const osvg = document.getElementsByClassName("o");
 const resultDiv = document.querySelector("#result");
 const moderadio = document.getElementsByName("mode");
-let scoreboardarray = [0, 0, 0]
+let scoreboardarray = [0, 0, 0];
 let mode;
 
 const resetButton = document.querySelector("#reset");
@@ -71,7 +71,8 @@ function resultChecker(gameArray) {
   return 0;
 }
 function gameCompleteChecker(gameArray) {
-  if (resultChecker(gameArray) == 1 || resultChecker(gameArray) == 2) return true;
+  if (resultChecker(gameArray) == 1 || resultChecker(gameArray) == 2)
+    return true;
   for (let i = 0; i < 9; i++) {
     if (gameArray[i] == 0) return false;
   }
@@ -160,47 +161,46 @@ const confirm = (question, option1, option2, function1, function2) => {
     questiondiv = document.querySelector("#question");
     option1div = document.querySelector("#option1");
     option2div = document.querySelector("#option2");
-    type1 = [heading,confirmdiv,questiondiv,option1div,option2div];
-
+    type1 = [heading, confirmdiv, questiondiv, option1div, option2div];
 
     container = document.querySelector("#container");
     reset = document.querySelector("#reset");
     player1picdiv = document.getElementsByClassName("player1picdiv")[0];
     player2picdiv = document.getElementsByClassName("player2picdiv")[0];
-    resetcurrent = document.querySelector("#resetcurrent")
-    type2 = [container,reset,player1picdiv,player2picdiv,resetcurrent]
-
+    resetcurrent = document.querySelector("#resetcurrent");
+    type2 = [container, reset, player1picdiv, player2picdiv, resetcurrent];
 
     wrapper = document.getElementsByClassName("wrapper")[0];
     wrapper.style.gridTemplateColumns = "auto";
 
-
-    type1.forEach(function(el) {
-      el.classList.remove("none")
-    })
-    type2.forEach(function(el) {
-      el.classList.add("none")
-    })
+    type1.forEach(function (el) {
+      el.classList.remove("none");
+    });
+    type2.forEach(function (el) {
+      el.classList.add("none");
+    });
     questiondiv.innerHTML = question;
     option1div.innerHTML = option1;
     option2div.innerHTML = option2;
     option1div.addEventListener("click", () => {
-      type1.forEach(function(el) {
-        el.classList.add("none")
-      })
-      type2.forEach(function(el) {
-        el.classList.remove("none")
-      })
+      
+      type1.forEach(function (el) {
+        el.classList.add("none");
+      });
+      type2.forEach(function (el) {
+        el.classList.remove("none");
+      });
       wrapper.style.gridTemplateColumns = "auto auto auto";
       resolve(function1());
     });
     option2div.addEventListener("click", () => {
-      type1.forEach(function(el) {
-        el.classList.add("none")
-      })
-      type2.forEach(function(el) {
-        el.classList.remove("none")
-      })
+      
+      type1.forEach(function (el) {
+        el.classList.add("none");
+      });
+      type2.forEach(function (el) {
+        el.classList.remove("none");
+      });
       wrapper.style.gridTemplateColumns = "auto auto auto";
       reject(function2());
     });
@@ -208,6 +208,7 @@ const confirm = (question, option1, option2, function1, function2) => {
 };
 modeSelector();
 async function reset() {
+  soundEffects.playMenu();
   let isConfirmed = await confirm(
     "Are you sure to reset the game?",
     "No",
@@ -218,14 +219,12 @@ async function reset() {
     () => {
       for (let i = 0; i < 9; i++) {
         gameArray[i] = 0;
-        // position[i].classList.remove("zero");
-        // position[i].classList.remove("cross");
-        xremover(xsvg[i])
-        oremover(osvg[i])
+        xremover(xsvg[i]);
+        oremover(osvg[i]);
         resultDiv.innerHTML = "";
         turnOfPlayer1 = true;
       }
-      scoreboardarray = [0, 0, 0]
+      scoreboardarray = [0, 0, 0];
       modeSelector();
       return true;
     }
@@ -252,15 +251,15 @@ async function modeSelector() {
   );
 }
 
-const oanimator = (o1) => {
+const oanimator = o1 => {
   return new Promise((resolve, reject) => {
     o1.classList.add("oanimate");
+    soundEffects.playOMark();
     setTimeout(() => {
       resolve("ma");
-    }, 1000)
-
+    }, 300);
   });
-}
+};
 async function oanimate(oo) {
   let o = oo.getElementById("o1");
   const man = await oanimator(o);
@@ -271,58 +270,89 @@ const x1animator = (x1, x2) => {
     x1.classList.add("xanimate");
     setTimeout(() => {
       resolve(x2);
-    }, 500)
-
+    }, 150);
   });
-}
-const x2animator = (x2) => {
+};
+const x2animator = x2 => {
   return new Promise((resolve, reject) => {
     x2.classList.add("xanimate");
     resolve("fa");
   });
-}
+};
 async function xanimate(x) {
-  let x1 = x.getElementById("x1")
-  let x2 = x.getElementById("x2")
+  let x1 = x.getElementById("x1");
+  let x2 = x.getElementById("x2");
+  soundEffects.playXMark();
   const man = await x1animator(x1, x2);
   const appl = await x2animator(man);
 }
-const oremover = (o) => {
-  let o1 = o.getElementById("o1")
-  o1.classList.remove("oanimate")
-}
-const xremover = (x) => {
-  let x1 = x.getElementById("x1")
-  let x2 = x.getElementById("x2")
-  x1.classList.remove("xanimate")
-  x2.classList.remove("xanimate")
-}
+const oremover = o => {
+  let o1 = o.getElementById("o1");
+  o1.classList.remove("oanimate");
+};
+const xremover = x => {
+  let x1 = x.getElementById("x1");
+  let x2 = x.getElementById("x2");
+  x1.classList.remove("xanimate");
+  x2.classList.remove("xanimate");
+};
 
 function scoreboardupdater() {
-  let p1scorespan = document.querySelector("#p1score")
-  let p2scorespan = document.querySelector("#p2score")
-  let p2scoreboard = document.querySelector("#player2name")
+  let p1scorespan = document.querySelector("#p1score");
+  let p2scorespan = document.querySelector("#p2score");
+  let p2scoreboard = document.querySelector("#player2name");
   if (resultChecker(gameArray) == 1) scoreboardarray[0]++;
-  if (resultChecker(gameArray) == 0 && gameCompleteChecker(gameArray)) scoreboardarray[1]++;
+  if (resultChecker(gameArray) == 0 && gameCompleteChecker(gameArray))
+    scoreboardarray[1]++;
   if (resultChecker(gameArray) == 2) scoreboardarray[2]++;
   if (mode == "player") {
-    p2scoreboard.innerHTML = "Player2"
-  }
-  else {
-    p2scoreboard.innerHTML = "A.I"
+    p2scoreboard.innerHTML = "Player2";
+  } else {
+    p2scoreboard.innerHTML = "A.I";
   }
   p1scorespan.innerHTML = scoreboardarray[0];
   p2scorespan.innerHTML = scoreboardarray[2];
 }
 
-function player2picselector(){
+function player2picselector() {
   player2pic = document.getElementsByClassName("player2pic");
-  if(mode=="player"){
+  if (mode == "player") {
     player2pic[0].classList.remove("none");
     player2pic[1].classList.add("none");
-  }
-  else {
+  } else {
     player2pic[0].classList.add("none");
     player2pic[1].classList.remove("none");
   }
 }
+soundEffects.init();
+option2div.addEventListener("click",()=>{
+  if(option1div.innerHTML=="No"){
+    soundEffects.playMenu()
+  }
+  else {
+    console.log(option1div.innerHTML)
+    soundEffects.playSwipe()
+  }
+})
+option1div.addEventListener("click",()=>{
+  soundEffects.playSwipe()
+})
+soundButton = document.getElementById("sound");
+soundButton.addEventListener("click",()=>{
+  soundicon = soundButton.querySelector('i');
+  soundicon.classList.toggle("fa-volume-mute");
+  soundicon.classList.toggle("fa-volume-up");
+
+
+  if (soundicon.classList.contains('fa-volume-up')) {
+    document.querySelectorAll('audio').forEach((audio) => {
+      audio.muted = false;
+    });
+    soundEffects.playMenu();
+  } else {
+    document.querySelectorAll('audio').forEach((audio) => {
+      audio.muted = true;
+    });
+  }
+
+})
