@@ -8,15 +8,16 @@ const resultDiv = document.querySelector("#result");
 const moderadio = document.getElementsByName("mode");
 let scoreboardarray = [0, 0, 0];
 let mode;
-
 const resetButton = document.querySelector("#reset");
 resetButton.addEventListener("click", reset);
 let gameArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-for (let i = 0; i < 9; i++) {
-  position[i].addEventListener("click", () => {
-    play(i);
-  });
-}
+// for (let i = 0; i < 9; i++) {
+//   position[i].addEventListener("click", () => {
+//     play(i);
+//   });
+// }
+
+
 async function play(pos) {
   let result = 0;
   result = resultChecker(gameArray);
@@ -168,14 +169,14 @@ const confirm = (question, option1, option2, function1, function2) => {
     player1picdiv = document.getElementsByClassName("player1picdiv")[0];
     player2picdiv = document.getElementsByClassName("player2picdiv")[0];
     resetcurrent = document.querySelector("#resetcurrent");
-    type2 = [container, reset, player1picdiv, player2picdiv, resetcurrent];
+    type2 = [ reset, player1picdiv, player2picdiv, resetcurrent];
 
     wrapper = document.getElementsByClassName("wrapper")[0];
-    wrapper.style.gridTemplateColumns = "auto";
+    //wrapper.style.gridTemplateColumns = "auto";
 
-    type1.forEach(function (el) {
-      el.classList.remove("none");
-    });
+    // type1.forEach(function (el) {
+    //   el.classList.remove("none");
+    // });
     type2.forEach(function (el) {
       el.classList.add("none");
     });
@@ -184,9 +185,9 @@ const confirm = (question, option1, option2, function1, function2) => {
     option2div.innerHTML = option2;
     option1div.addEventListener("click", () => {
       
-      type1.forEach(function (el) {
-        el.classList.add("none");
-      });
+      // type1.forEach(function (el) {
+      //   el.classList.add("none");
+      // });
       type2.forEach(function (el) {
         el.classList.remove("none");
       });
@@ -195,9 +196,9 @@ const confirm = (question, option1, option2, function1, function2) => {
     });
     option2div.addEventListener("click", () => {
       
-      type1.forEach(function (el) {
-        el.classList.add("none");
-      });
+      // type1.forEach(function (el) {
+      //   el.classList.add("none");
+      // });
       type2.forEach(function (el) {
         el.classList.remove("none");
       });
@@ -210,7 +211,7 @@ modeSelector();
 async function reset() {
   soundEffects.playMenu();
   let isConfirmed = await confirm(
-    "Are you sure to reset the game?",
+    "Are you sure to reset this ongoing game?",
     "No",
     "Yes",
     () => {
@@ -325,18 +326,7 @@ function player2picselector() {
   }
 }
 soundEffects.init();
-option2div.addEventListener("click",()=>{
-  if(option1div.innerHTML=="No"){
-    soundEffects.playMenu()
-  }
-  else {
-    console.log(option1div.innerHTML)
-    soundEffects.playSwipe()
-  }
-})
-option1div.addEventListener("click",()=>{
-  soundEffects.playSwipe()
-})
+
 soundButton = document.getElementById("sound");
 soundButton.addEventListener("click",()=>{
   soundicon = soundButton.querySelector('i');
@@ -355,4 +345,75 @@ soundButton.addEventListener("click",()=>{
     });
   }
 
+})
+
+
+let playfunctionarray = [()=>{play(0)},()=>{play(1)},()=>{play(2)},()=>{play(3)},()=>{play(4)},()=>{play(5)},()=>{play(6)},()=>{play(7)},()=>{play(8)}];
+
+
+
+
+option2div.addEventListener('click', (e) => {
+  if(option2div.innerHTML=="Yes"){
+    soundEffects.playMenu()
+  }
+  else {
+    console.log(option1div.innerHTML)
+    soundEffects.playSwipe();
+    for (let i = 0; i < 9; i++) {
+      position[i].addEventListener("click",playfunctionarray[i]);
+    }
+    e.preventDefault();
+  confirmdiv.classList.remove('slide-in-left');
+  confirmdiv.classList.add('slide-out-left');
+  container.classList.remove('slide-out-right');
+  container.classList.add('slide-in-right');
+
+  // playersInit();
+
+  // const animationHandler = () => {
+  //   confirmdiv.classList.remove('slide-out-left');
+  //   confirmdiv.removeEventListener('animationend', animationHandler);
+
+  // };
+
+  // confirmdiv.addEventListener('animationend', animationHandler);
+
+  }
+  
+});
+
+resetButton.addEventListener('click', () => {
+  soundEffects.playSwipe();
+  for (let i = 0; i < 9; i++) {
+    position[i].removeEventListener("click",playfunctionarray[i]);
+  }
+  container.classList.remove('slide-in-right');
+  container.classList.add('slide-out-right');
+
+  const animationHandler = () => {
+    confirmdiv.classList.add('slide-in-left');
+    container.removeEventListener('animationend', animationHandler);
+  };
+  container.addEventListener('animationend', animationHandler);
+});
+
+option1div.addEventListener('click',(e)=>{
+  console.log(option1div.innerHTML)
+  soundEffects.playSwipe();
+  e.preventDefault();
+confirmdiv.classList.remove('slide-in-left');
+confirmdiv.classList.add('slide-out-left');
+container.classList.remove('slide-out-right');
+container.classList.add('slide-in-right');
+
+// playersInit();
+
+// const animationHandler = () => {
+//   confirmdiv.classList.remove('slide-out-left');
+//   confirmdiv.removeEventListener('animationend', animationHandler);
+
+// };
+
+// confirmdiv.addEventListener('animationend', animationHandler);
 })

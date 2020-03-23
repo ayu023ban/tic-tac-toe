@@ -119,7 +119,8 @@
   cursor: pointer;
 }
 .none {
-  display: none;
+  opacity: 0;
+  visibility: collapse;
 }
 #sound {
   background-color: rgb(66, 133, 244);
