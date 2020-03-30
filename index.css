@@ -212,10 +212,11 @@
 
 .gameboard {
   position: relative;
-  width: 670px;
+  max-width: 670px;
   height: 670px;
-  left: 50%;
-  margin-left: -335px;
+  width: 100%;
+  /* left: 50%;
+  margin-left: -335px; */
   top: 100px;
 }
 .player2picdiv {
@@ -257,14 +258,14 @@
   border-top-color: #f1b0b7;
   color: #491217;
 }
-.alert-primary{
+.alert-primary {
   color: #004085;
   background-color: #cce5ff;
   border-color: #b8daff;
   border-top-color: #9fcdff;
   color: #002752;
 }
-.alert-warning{
+.alert-warning {
   color: #856404;
   background-color: #fff3cd;
   border-color: #ffeeba;
@@ -275,9 +276,9 @@
   padding: 0.663rem 1.25rem;
   font-size: 24px;
   height: 36px;
-  position: relative;
+  position: relative; 
   z-index: 3;
-  top: 82px;
+  top: 20px;
   width: max-content;
   margin: 0 auto;
 }
@@ -286,4 +287,69 @@
   animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
+}
+
+@media only screen and (max-width: 1450px) {
+  .wrapper {
+    /* display: block; */
+    display: flex;
+    align-items: center;
+  }
+  .gameboard {
+    /* left: 50%;
+  margin-left: -335px; */
+    top: 0;
+  }
+
+  .player1pic,
+  .player2pic {
+    display: none;
+  }
+  .player1picdiv,
+  .player2picdiv {
+    height: max-content;
+    width: max-content;
+    position: absolute;
+    left: 50%;
+    top:6%;
+  }
+  .player1picdiv {
+    margin-left: -10rem;
+  }
+  #player1scoreboard,
+  #player2scoreboard {
+    z-index: 3;
+  }
+  .page,
+  .page2,
+  .page3 {
+    width: 100%;
+    left: 0;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .wrapper {
+  }
+  .gameboard {
+    width: 90%;
+    left: 0;
+    margin: 0 auto;
+    top: 0;
+  }
+  #custom-confirm {
+    width:100%;
+
+  }
+  .container {
+    width: 300px;
+    height: 300px;
+    margin: auto;
+    left: 0;
+  }
+  .player1picdiv,
+  .player2picdiv {
+    top: 6%;
+  }
 }
