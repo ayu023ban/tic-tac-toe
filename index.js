@@ -9,6 +9,7 @@ const moderadio = document.getElementsByName("mode");
 const statusdiv = document.getElementById("game-status");
 let scoreboardarray = [0, 0, 0];
 let mode;
+resetcurrent = document.querySelector("#resetcurrent");
 const resetButton = document.querySelector("#reset");
 resetButton.addEventListener("click", reset);
 let gameArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -507,3 +508,17 @@ function option1eventfunction() {
   // confirmdiv.addEventListener("animationend", animationHandler);
 }
 option1div.addEventListener("click", option1eventfunction);
+
+function resetcurrentfunction(){
+  soundEffects.playMenu();
+  statusdiv.style.opacity = 1;
+      statusdiv.className = "";
+      statusdiv.innerHTML = "";
+      for (let i = 0; i < 9; i++) {
+        gameArray[i] = 0;
+        xremover(xsvg[i]);
+        oremover(osvg[i]);
+        turnOfPlayer1 = true;
+      }
+}
+resetcurrent.addEventListener("click",resetcurrentfunction)
