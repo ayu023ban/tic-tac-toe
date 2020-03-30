@@ -12,6 +12,7 @@
   display: grid;
   grid-template-columns: auto auto auto;
   justify-content: space-around;
+  overflow: hidden;
 }
 
 .page2,
@@ -95,9 +96,9 @@
   grid-template-columns: auto auto;
   justify-content: space-between;
   margin-top: 140px;
-  left:50%;
+  left: 50%;
   margin-left: -200px;
-  width:400px;
+  width: 400px;
   position: relative;
 }
 #option1 {
@@ -135,7 +136,8 @@
   position: absolute;
   z-index: 4;
 }
-.fa-volume-up, .fa-volume-mute {
+.fa-volume-up,
+.fa-volume-mute {
   color: white;
   font-size: 29px;
 }
@@ -183,7 +185,7 @@
 .o1 {
   stroke-dashoffset: 389px;
   stroke-dasharray: 389px;
-  transition: .3s;
+  transition: 0.3s;
   transition-timing-function: ease-in-out;
 }
 .oanimate {
@@ -225,13 +227,14 @@
 .player2pic {
   position: absolute;
 }
-#player1scoreboard, #player2scoreboard {
+#player1scoreboard,
+#player2scoreboard {
   position: relative;
   width: 147px;
   margin: auto;
   background-color: white;
   height: 41px;
-  padding:5px 10px;
+  padding: 5px 10px;
   box-sizing: border-box;
   font-size: 26px;
   color: #0c5460;
@@ -242,6 +245,45 @@
   border-bottom-color: #a8e4ef;
   border-bottom-width: 2px;
 }
-#p1score,#p2score{
+#p1score,
+#p2score {
   float: right;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  border-top-color: #f1b0b7;
+  color: #491217;
+}
+.alert-primary{
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  border-top-color: #9fcdff;
+  color: #002752;
+}
+.alert-warning{
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  border-top-color: #ffe8a1;
+  color: #533f03;
+}
+#game-status {
+  padding: 0.663rem 1.25rem;
+  font-size: 24px;
+  height: 36px;
+  position: relative;
+  z-index: 3;
+  top: 82px;
+  width: max-content;
+  margin: 0 auto;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
