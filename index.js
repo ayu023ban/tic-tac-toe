@@ -138,7 +138,7 @@ const computerplay = () => {
       gameArray[move] = 2;
       turn();
       resolve("magno");
-    }, 1000);
+    }, 300);
   });
 };
 
