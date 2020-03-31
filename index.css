@@ -131,9 +131,9 @@
   border-width: 0;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 5px 11px 0px,
     rgba(0, 0, 0, 0.15) 0px 4px 15px 0px;
-  top: 565px;
+  /* top: 565px;
   left: 25px;
-  position: absolute;
+  position: absolute; */
   z-index: 4;
 }
 .fa-volume-up,
@@ -149,9 +149,9 @@
   box-shadow: rgba(0, 0, 0, 0.18) 0px 5px 11px 0px,
     rgba(0, 0, 0, 0.15) 0px 4px 15px 0px;
   background-color: rgb(66, 133, 244);
-  position: absolute;
+  /* position: absolute;
   top: 560px;
-  left: 564px;
+  left: 564px; */
 }
 .fa-undo {
   color: white;
@@ -161,9 +161,9 @@
   height: 53px;
   width: 127px;
   border-width: 0;
-  position: absolute;
+  /* position: absolute;
   top: 571px;
-  left: 258px;
+  left: 258px; */
   background-image: linear-gradient(40deg, #97e1e1, #00a0ff);
   color: white;
   font-size: 30px;
@@ -191,11 +191,13 @@
 .oanimate {
   stroke-dashoffset: 0;
 }
-.x {
+.x , .o{
   position: absolute;
+  width: 100%;
+  height: 100%;
 }
-.o {
-  position: absolute;
+.box{
+  position: relative;
 }
 
 .player1picdiv {
@@ -278,7 +280,7 @@
   height: 36px;
   position: relative; 
   z-index: 3;
-  top: 20px;
+  top: 75px;
   width: max-content;
   margin: 0 auto;
 }
@@ -288,7 +290,15 @@
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
-
+.buttoncontainer{
+  display:grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top:90%;
+  width:100%
+}
 @media only screen and (max-width: 1450px) {
   .wrapper {
     /* display: block; */
@@ -340,7 +350,17 @@
   }
   #custom-confirm {
     width:100%;
-
+    left:0;
+    margin:auto;
+  }
+  .optioncontainer{
+    justify-content: space-evenly;
+  }
+  #heading{
+    font-size: 60px;
+  }
+  #question{
+    font-size: 30px ;
   }
   .container {
     width: 300px;
@@ -351,5 +371,23 @@
   .player1picdiv,
   .player2picdiv {
     top: 6%;
+  }
+  #player1scoreboard,#player2scoreboard{
+    font-size: 18px;
+    height: 32px;
+  }
+  #sound, #reset{
+    position: unset;
+    width:45px;
+    height:45px;
+  }
+  #resetcurrent{
+    position: unset;
+    width:100px;
+    font-size: 24px;
+    height: 48px;
+  }
+  .fa-volume-up, .fa-volume-mute,.fa-undo{
+    font-size: 18px;
   }
 }
