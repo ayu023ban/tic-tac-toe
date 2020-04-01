@@ -9,20 +9,32 @@ This is a complete and an awesome **_Tic Tac Toe_** game, with a great design an
 
 ## Table of contents
 
-1. [Features](#features)
-2. [Development](#development)
+1. [Demo](#demo)
+2. [Features](#features)
+3. [Development](#development)
 
+## Demo
+
+The full demo of the game is hosted and can be viewed at [here](https://ayu023ban.github.io/tic-tac-toe)
 
 ## Features
 
 - Single & multiplayer mode
-- Three available difficulties in single player mode (Easy, Normal & Impossible)
+
 - Restart game
+
 - Save and display score
+
+- Fully Compatible with mobile
+
 - Reset score
+
 - Great sound effects
+
 - Material design
+
 - A cartoon game style design
+
 - Cool CSS animations & SVG animations (board game, 'X' & 'O' marks)
 
 > **_Game page vs player_**
@@ -33,11 +45,14 @@ This is a complete and an awesome **_Tic Tac Toe_** game, with a great design an
 
 # ![Tic Tac Toe](Screenshot3.png)
 
+> **_Mobile View_**
+# <img src="./Screenshot4.jpg" height="500" alt="Tic Tac Toe">
+
 ## Development
 
 To set up this App locally, clone this repo to your desktop using git and develop as you want!!
 
 
 ```diff
-This game is still in development phase so some features mentioned above might not be there**
+This game is still in development phase so some features mentioned above might not be there
 ```
