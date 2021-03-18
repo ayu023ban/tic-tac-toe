@@ -1,198 +1,550 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-162488751-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162488751-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+      gtag("config", "UA-162488751-1");
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          "gtm.start": new Date().getTime(),
+          event: "gtm.js",
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-MQ5FH48");
+    </script>
+    <!-- End Google Tag Manager -->
 
-    gtag("config", "UA-162488751-1");
-  </script>
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-    w[l] = w[l] || []; w[l].push({
-      'gtm.start':
-        new Date().getTime(), event: 'gtm.js'
-    }); var f = d.getElementsByTagName(s)[0],
-      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-MQ5FH48');</script>
-  <!-- End Google Tag Manager -->
+    <script
+      data-ad-client="ca-pub-9552396768426571"
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap" rel="stylesheet" /> -->
+    <!-- <script src="https://kit.fontawesome.com/648634b9ad.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="./animations.css" />
+    <link rel="stylesheet" href="./googlefont.css" />
+    <script src="./fontawesome.js"></script>
+    <title>tic-tac-toe</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
 
-  <script data-ad-client="ca-pub-9552396768426571" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap" rel="stylesheet" /> -->
-  <!-- <script src="https://kit.fontawesome.com/648634b9ad.js" crossorigin="anonymous"></script> -->
-  <link rel="stylesheet" href="./animations.css" />
-  <link rel="stylesheet" href="./googlefont.css" />
-  <script src="./fontawesome.js"></script>
-  <title>tic-tac-toe</title>
-  <link rel="stylesheet" href="./index.css" />
-</head>
-
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQ5FH48" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <div class="wrapper">
-    <div class="player1picdiv">
-      <div id="player1scoreboard">
-        <span id="player1name">player1 </span><span id="p1score">0</span>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-MQ5FH48"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <div class="wrapper">
+      <div class="player1picdiv">
+        <div id="player1scoreboard">
+          <span id="player1name">player1 </span><span id="p1score">0</span>
+        </div>
+        <img
+          class="player1pic"
+          src="./Goku-PNG-Clipart.png"
+          alt="Goku picture"
+          srcset=""
+        />
       </div>
-      <img class="player1pic" src="./Goku-PNG-Clipart.png" alt="Goku picture" srcset="" />
-    </div>
-    <div class="gameboard">
-      <div class="page2"></div>
-      <div class="page3"></div>
-      <div class="page">
-        <div id="custom-confirm">
-          <div id="heading">Tic Tac Toe</div>
-          <div id="question"></div>
-          <div class="optioncontainer">
-            <div id="option1"></div>
-            <div id="option2"></div>
+      <div class="gameboard">
+        <div class="page2"></div>
+        <div class="page3"></div>
+        <div class="page">
+          <div id="custom-confirm">
+            <div id="heading">Tic Tac Toe</div>
+            <div id="question"></div>
+            <div class="optioncontainer">
+              <div id="option1"></div>
+              <div id="option2"></div>
+            </div>
+          </div>
+          <div id="game-status"></div>
+          <div class="buttoncontainer">
+            <button id="sound"><i class="fas fa-volume-up"></i></button>
+            <button id="resetcurrent">Restart</button>
+            <button id="reset" class="none">
+              <i class="fas fa-undo"></i>
+            </button>
           </div>
         </div>
-        <div id="game-status"></div>
-        <div class="buttoncontainer">
-          <button id="sound"><i class="fas fa-volume-up"></i></button>
-          <button id="resetcurrent">Restart</button>
-          <button id="reset" class="none">
-            <i class="fas fa-undo"></i>
-          </button>
-        </div>
-      </div>
 
-      <div class="container slide-out-right " id="container">
-        <div class="box" id="box0">
-          <svg class="x" height="135" viewBox="0 0 130 130" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
+        <div class="container slide-out-right" id="container">
+          <div class="box" id="box0">
+            <svg
+              class="x"
+              height="135"
+              viewBox="0 0 130 130"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="box" id="box1">
+            <svg
+              class="x"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="box" id="box2">
+            <svg
+              class="x"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="box" id="box3">
+            <svg
+              class="x"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="box" id="box4">
+            <svg
+              class="x"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="box" id="box5">
+            <svg
+              class="x"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="box" id="box6">
+            <svg
+              class="x"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="box" id="box7">
+            <svg
+              class="x"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="box" id="box8">
+            <svg
+              class="x"
+              height="135"
+              width="135"
+              viewBox="0 0 130 130"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="x1"
+                class="x1"
+                d="M10 10 L120 120 "
+                stroke="black"
+                stroke-width="10"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+              <path
+                id="x2"
+                class="x2"
+                d="M10 120 L 120 10"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+                stroke-dasharray="3.9 6.369 9.6"
+              />
+            </svg>
+            <svg
+              class="o"
+              viewBox="0 0 130 130"
+              height="135"
+              width="135"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                id="o1"
+                class="o1"
+                d="m 65 6 a 59 59 360 1 0 1 0 "
+                fill="none"
+                stroke="black"
+                stroke-width="10"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
         </div>
-        <div class="box" id="box1">
-          <svg class="x" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="box" id="box2">
-          <svg class="x" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="box" id="box3">
-          <svg class="x" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="box" id="box4">
-          <svg class="x" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="box" id="box5">
-          <svg class="x" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="box" id="box6">
-          <svg class="x" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="box" id="box7">
-          <svg class="x" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
-        </div>
-        <div class="box" id="box8">
-          <svg class="x" height="135" width="135" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
-            <path id="x1" class="x1" d="M10 10 L120 120 " stroke="black" stroke-width="10" fill="none"
-              stroke-linecap="round" stroke-dasharray="3.9 6.369 9.6" />
-            <path id="x2" class="x2" d="M10 120 L 120 10" stroke="black" stroke-width="10" stroke-linecap="round"
-              stroke-dasharray="3.9 6.369 9.6" />
-          </svg>
-          <svg class="o" viewBox="0 0 130 130" height="135" width="135" xmlns="http://www.w3.org/2000/svg">
-            <path id="o1" class="o1" d="m 65 6 a 59 59 360 1 0 1 0 " fill="none" stroke="black" stroke-width="10"
-              stroke-linecap="round" />
-          </svg>
-        </div>
-      </div>
 
-      <!-- <div id="result"></div> -->
+        <!-- <div id="result"></div> -->
+      </div>
+      <div class="player2picdiv">
+        <div id="player2scoreboard">
+          <span id="player2name"></span><span id="p2score">0</span>
+        </div>
+        <img class="player2pic" src="./goku-png-23557.png" alt="goku picture" />
+        <img
+          class="player2pic none"
+          src="./27360-5-optimus-prime-picture.png"
+          alt="optimus prime picture"
+        />
+      </div>
+      <div id="add-div">
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+        ></script>
+        <!-- tic-tac-toe below add unit -->
+        <ins
+          class="adsbygoogle"
+          style="display: block"
+          data-ad-client="ca-pub-9552396768426571"
+          data-ad-slot="5438878338"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
     </div>
-    <div class="player2picdiv">
-      <div id="player2scoreboard">
-        <span id="player2name"></span><span id="p2score">0</span>
-      </div>
-      <img class="player2pic" src="./goku-png-23557.png" alt="goku picture" />
-      <img class="player2pic none" src="./27360-5-optimus-prime-picture.png" alt="optimus prime picture" />
-    </div>
-  </div>
-  <script src="./soundeffects.js"></script>
-  <script src="./index.js"></script>
-</body>
 
+    <script src="./soundeffects.js"></script>
+    <script src="./index.js"></script>
+  </body>
 </html>
