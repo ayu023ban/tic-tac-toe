@@ -1,58 +1,34 @@
-# Tic Tac Toe
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This is a complete and an awesome **_Tic Tac Toe_** game, with a great design and all the necessary features you could think of (check [Features](#features) for more details).
+## Getting Started
 
-**_Artificial Intelligence_**: To create the **_AI_** for this game I used the [Mini-Max](https://www.javatpoint.com/mini-max-algorithm-in-ai) algorithm, a recursive or backtracking algorithm which is used in decision-making and game theory.
+First, run the development server:
 
-> **Home page**
-# ![Tic Tac Toe](Screenshot1.png)
-
-## Table of contents
-
-1. [Demo](#demo)
-2. [Features](#features)
-3. [Development](#development)
-
-## Demo
-
-The full demo of the game is hosted and can be viewed at [here](https://ayu023ban.github.io/tic-tac-toe)
-
-## Features
-
-- Single & multiplayer mode
-
-- Restart game
-
-- Save and display score
-
-- Fully Compatible with mobile
-
-- Reset score
-
-- Great sound effects
-
-- Material design
-
-- A cartoon game style design
-
-- Cool CSS animations & SVG animations (board game, 'X' & 'O' marks)
-
-> **_Game page vs player_**
-
-# ![Tic Tac Toe](Screenshot2.png)
-
-> **_Game page vs A.I_**
-
-# ![Tic Tac Toe](Screenshot3.png)
-
-> **_Mobile View_**
-# <img src="./Screenshot4.jpg" height="500" alt="Tic Tac Toe">
-
-## Development
-
-To set up this App locally, clone this repo to your desktop using git and develop as you want!!
-
-
-```diff
-This game is still in development phase so some features mentioned above might not be there
+```bash
+npm run dev
+# or
+yarn dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
