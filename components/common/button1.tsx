@@ -1,12 +1,12 @@
 import React,{FC,ReactElement} from "react";
-import styles from "../../styles/button.module.scss";
+import styles from "../../styles/button1.module.scss";
 
 type Props = {
   text: string;
 };
 
-const Button: FC<Props> = ({ text }):ReactElement => (
+const Button1: FC<Props> = ({ text }):ReactElement => (
   <button className={styles.container}>{text}</button>
 );
 
-export default Button
+export default Button1
