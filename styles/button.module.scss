@@ -1,0 +1,11 @@
+// $primary-gradient: linear-gradient(40deg, #c4d5db, #00b0f2);
+
+.container{
+  background-image: linear-gradient(40deg, #c4d5db, #00b0f2);
+  position: relative;
+  width: 100px;
+  height: 60px;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding-top: 18px;
+}
