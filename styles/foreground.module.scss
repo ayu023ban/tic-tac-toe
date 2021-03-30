@@ -1,0 +1,34 @@
+.container {
+  position: relative;
+  max-width: 670px;
+  max-height: 670px;
+  width: 100%;
+  height: 100%;
+}
+
+.page2,
+.page3,
+.page {
+  background-color: white;
+  width: 90%;
+  height: 90%;
+  border: 0.5px solid gray;
+  position: absolute;
+  z-index: 0;
+  box-sizing: border-box;
+  //   left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  transform-origin: center;
+}
+.page2 {
+  transform: rotate(2.5deg);
+  z-index: 1;
+}
+.page3 {
+  transform: rotate(-2.5deg);
+  z-index: 2;
+}
+.page {
+  z-index: 3;
+}
