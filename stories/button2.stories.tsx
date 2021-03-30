@@ -1,6 +1,6 @@
 import Button2 from "../components/common/button2";
 export default {
-  title: "Button",
+  title: "Elements/Button",
   component: Button2,
   argTypes: {
     type: {
