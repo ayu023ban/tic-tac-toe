@@ -1,5 +1,5 @@
-import Button from "../components/common/button1";
+import Alert from "../components/common/alert";
 
 export default function Home() {
-  return <Button text="mango" />;
+  return <Alert />;
 }
