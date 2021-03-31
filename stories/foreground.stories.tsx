@@ -3,7 +3,7 @@ export default {
   title: "Elements/ForeGround",
 };
 
-const Template1 = ({ width, height }) => (
+const Template1 = ({ width, height }: { width: Number; height: Number }) => (
   <div style={{ width: width + "px", height: height + "px" }}>
     <ForeGround />
   </div>

@@ -1,4 +1,3 @@
-import "../styles/fonts.scss";
 import "../styles/globals.scss";
 import { wrapper } from "../redux/store";
 import SoundWrapper from "../sounds/soundWrapper";

@@ -1,0 +1,18 @@
+.scoreboard {
+  width: max-content;
+  background-color: white;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  font-size: 26px;
+  color: #0c5460;
+  font-family: "LuckiestGuy";
+  border-radius: 10px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.16);
+  border-bottom-color: #a8e4ef;
+  border-bottom-width: 2px;
+}
+.name {
+}
+.score {
+  margin-left: 1.5rem;
+}
