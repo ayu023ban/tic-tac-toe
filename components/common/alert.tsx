@@ -1,14 +1,15 @@
 import * as React from "react";
 import { RESULT_TYPE } from "../../constants";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { playSound } from "../../redux/sounds/actions";
 import styles from "../../styles/alert.module.scss";
 
 type AppProps = { message: String };
-const Alert = ({ message = "You Win!" }: AppProps) => {
+const Alert = ({ message }: AppProps) => {
   const result = useAppSelector((state) => state.result.result);
   const isMute = useAppSelector((state) => state.settings.isMute);
   const animationEnabled = useAppSelector((state) => state.settings.animation);
-
+  const dispatch = useAppDispatch();
   let classes;
   switch (result) {
     case RESULT_TYPE.LOSE:
@@ -24,9 +25,16 @@ const Alert = ({ message = "You Win!" }: AppProps) => {
       if (animationEnabled) classes += styles.wobble;
       break;
   }
-  
+
   return classes !== undefined ? (
-    <div className={classes}>{message}</div>
+    <div
+      className={classes}
+      onClick={() => {
+        dispatch(playSound("menuSound"));
+      }}
+    >
+      {message}
+    </div>
   ) : null;
 };
 

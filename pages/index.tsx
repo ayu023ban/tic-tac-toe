@@ -1,5 +1,5 @@
 import Alert from "../components/common/alert";
 
 export default function Home() {
-  return <Alert />;
+  return <Alert message="Mango" />;
 }
