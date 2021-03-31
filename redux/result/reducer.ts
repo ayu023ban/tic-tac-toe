@@ -1,18 +1,21 @@
-import { alertActionTypes } from "./actions";
+import { alertActions } from "./actions";
 import { AnyAction } from "redux";
 import { RESULT_TYPE } from "../../constants";
 
 const initialState = {
   result: RESULT_TYPE.WIN,
 };
-export default function result(state = initialState, action: AnyAction) {
+export type resultActionType = {
+  type: string;
+};
+export default function result(state = initialState, action: resultActionType) {
   const { type } = action;
   switch (type) {
-    case alertActionTypes.WIN:
+    case alertActions.WIN:
       return { ...state, result: RESULT_TYPE.WIN };
-    case alertActionTypes.LOSE:
+    case alertActions.LOSE:
       return { ...state, result: RESULT_TYPE.LOSE };
-    case alertActionTypes.TIE:
+    case alertActions.TIE:
       return { ...state, result: RESULT_TYPE.TIE };
     default:
       return state;

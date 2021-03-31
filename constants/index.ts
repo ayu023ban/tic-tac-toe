@@ -1,3 +1,5 @@
+const xMark = "public/images/x.svg";
+const oMark = "public/images/o.svg";
 export const RESULT_TYPE = {
   WIN: "WIN",
   LOSE: "LOSE",
@@ -16,3 +18,8 @@ export const SOUNDS = {
   winSound: "winSound",
   xMarkSound: "xMarkSound",
 } as const;
+
+export const SYMBOLS = [
+  { symbol: "X", image: xMark },
+  { symbol: "O", image: oMark },
+];

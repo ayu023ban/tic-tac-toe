@@ -1,5 +1,5 @@
-import Alert from "../components/common/alert";
+import ScoreBoard from "../components/common/scoreBoard";
 
 export default function Home() {
-  return <Alert message="Mango" />;
+  return <ScoreBoard />;
 }

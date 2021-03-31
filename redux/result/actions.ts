@@ -2,21 +2,25 @@ import { ThunkAction } from "redux-thunk";
 import { AnyAction } from "redux";
 import { RootState } from "../store";
 import { RESULT_TYPE } from "../../constants";
-export const alertActionTypes = Object.assign({}, RESULT_TYPE);
+import { resultActionType } from "./reducer";
+export const alertActions = Object.assign({}, RESULT_TYPE);
 
-export const win = (): ThunkAction<void, RootState, unknown, AnyAction> => (
-  dispatch
-) => {
-  return dispatch({ type: alertActionTypes.WIN });
+export const win = (): ThunkAction<
+  void,
+  RootState,
+  unknown,
+  resultActionType
+> => (dispatch) => {
+  return dispatch({ type: alertActions.WIN });
 };
 
 export const lose = (): ThunkAction<void, RootState, unknown, AnyAction> => (
   dispatch
 ) => {
-  return dispatch({ type: alertActionTypes.LOSE });
+  return dispatch({ type: alertActions.LOSE });
 };
 export const tie = (): ThunkAction<void, RootState, unknown, AnyAction> => (
   dispatch
 ) => {
-  return dispatch({ type: alertActionTypes.TIE });
+  return dispatch({ type: alertActions.TIE });
 };

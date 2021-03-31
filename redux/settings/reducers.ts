@@ -1,20 +1,29 @@
 import { AnyAction } from "redux";
-import { settingsActionTypes } from "./actions";
+import { settingsActions } from "./actions";
 
 const initialState = {
   isMute: false,
   volumeLevel: 1,
   animation: true,
 };
-export default function result(state = initialState, action: AnyAction) {
-  const { type, payload } = action;
+export type settingsActionType = {
+  type: string;
+  isMute?: boolean;
+  volume?: number;
+  animation?: boolean;
+};
+export default function result(
+  state = initialState,
+  action: settingsActionType
+) {
+  const { type, isMute, volume, animation } = action;
   switch (type) {
-    case settingsActionTypes.SET_MUTE:
-      return { ...state, isMute: Boolean(payload) };
-    case settingsActionTypes.SET_VOLUME_LEVEL:
-      return { ...state, volumeLevel: Number(payload) };
-    case settingsActionTypes.ENABLE_ANIMATION:
-      return { ...state, animation: payload };
+    case settingsActions.SET_MUTE:
+      return { ...state, isMute: isMute };
+    case settingsActions.SET_VOLUME_LEVEL:
+      return { ...state, volumeLevel: volume };
+    case settingsActions.ENABLE_ANIMATION:
+      return { ...state, animation: animation };
     default:
       return state;
   }
