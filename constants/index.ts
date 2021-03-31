@@ -1,11 +1,11 @@
 const xMark = "public/images/x.svg";
 const oMark = "public/images/o.svg";
 export const RESULT_TYPE = {
-  WIN: "WIN",
-  LOSE: "LOSE",
+  PLAYER_1_WIN: "PLAYER_1_WIN",
+  PLAYER_2_WIN: "PLAYER_2_WIN",
   TIE: "TIE",
   NOT_DECLARED: "NOT_DECLARED",
-};
+} as const;
 
 export const SOUNDS = {
   boardSound: "boardSound",

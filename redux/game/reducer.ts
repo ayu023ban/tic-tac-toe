@@ -1,7 +1,6 @@
-import { AnyAction } from "redux";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SYMBOLS } from "../../constants";
 import { getEmptyGameArray } from "../../utils/game";
-import { gameActions } from "./actions";
 
 const initialState = {
   turn: "Player1",
@@ -12,21 +11,26 @@ const initialState = {
   currentState: getEmptyGameArray([3, 3], "_"),
 };
 
-export type gameActionType = {
-  type: string;
-  symbol?: typeof SYMBOLS[0];
-  dimensions?: [number, number];
-};
-export default function result(state = initialState, action: gameActionType) {
-  const { type, symbol, dimensions } = action;
-  switch (type) {
-    case gameActions.SET_PLAYER_1_SYMBOL:
-      return { ...state, player1Symbol: symbol };
-    case gameActions.SET_PLAYER_1_SYMBOL:
-      return { ...state, player2Symbol: symbol };
-    case gameActions.SET_GAME_BOARD_DIMENSION:
-      return { ...state, gameBoardDimension: dimensions };
-    default:
-      return state;
-  }
-}
+const gameSlice = createSlice({
+  name: "game",
+  initialState,
+  reducers: {
+    setPlayer1Symbol(state, action: PayloadAction<typeof SYMBOLS[0]>) {
+      state.player1Symbol = action.payload;
+    },
+    setPlayer2Symbol(state, action: PayloadAction<typeof SYMBOLS[0]>) {
+      state.player2Symbol = action.payload;
+    },
+    setGameBoardDimension(state, { payload }: PayloadAction<[number, number]>) {
+      state.gameBoardDimension = payload;
+    },
+  },
+});
+
+export const {
+  setPlayer1Symbol,
+  setPlayer2Symbol,
+  setGameBoardDimension,
+} = gameSlice.actions;
+
+export default gameSlice.reducer;

@@ -12,11 +12,11 @@ const Alert = ({ message }: AppProps) => {
   const dispatch = useAppDispatch();
   let classes;
   switch (result) {
-    case RESULT_TYPE.LOSE:
+    case RESULT_TYPE.PLAYER_2_WIN:
       classes = `${styles["game-status"]} ${styles.danger} ${styles.animated} `;
       if (animationEnabled) classes += styles.tada;
       break;
-    case RESULT_TYPE.WIN:
+    case RESULT_TYPE.PLAYER_1_WIN:
       classes = `${styles["game-status"]} ${styles.primary} ${styles.animated} `;
       if (animationEnabled) classes += styles.shake;
       break;
@@ -30,7 +30,7 @@ const Alert = ({ message }: AppProps) => {
     <div
       className={classes}
       onClick={() => {
-        dispatch(playSound("menuSound"));
+        dispatch(playSound("boardSound"));
       }}
     >
       {message}
