@@ -1,8 +1,6 @@
 import { RESULT_TYPE } from "../../constants";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-const resultTypes = Object.values(RESULT_TYPE);
-type resultType = typeof resultTypes[number];
+import { createSlice } from "@reduxjs/toolkit";
+import { resultType } from "../../utils/types";
 
 type initialStateType = {
   result: resultType;

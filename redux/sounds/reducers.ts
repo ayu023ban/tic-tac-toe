@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { SOUNDS } from "../../constants";
+import { SoundType } from "../../utils/types";
 
-const soundTypes = Object.values(SOUNDS);
-type SoundType = typeof soundTypes[number] | null;
+
 type reducerType = {
   soundType: SoundType;
 };

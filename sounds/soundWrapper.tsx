@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useSound from "use-sound";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { resetSound } from "../redux/sounds/actions";
+import { resetSound } from "../redux/sounds/reducers";
 import boardSound from "../sounds/board.mp3";
 import bubbleSound from "../sounds/bubble.mp3";
 import loseSound from "../sounds/lose.mp3";
