@@ -1,4 +1,5 @@
 import { getColumn, getDiagonals } from ".";
+import { setGameBoard, setNextTurn } from "../redux/game/reducer";
 import { store } from "../redux/store";
 import { resultType, turnType } from "./types";
 
@@ -15,7 +16,7 @@ export const getEmptyGameArray = (
   return outsideArray;
 };
 
-export const getResult = (gameArray: string[][]): resultType => {
+export const getResult = (gameArray: String[][]): resultType => {
   const player1Symbol = store.getState().game.player1Symbol.symbol;
   const player2Symbol = store.getState().game.player2Symbol.symbol;
   const emptySymbol = store.getState().game.emptySymbol;
@@ -78,14 +79,14 @@ export const getResult = (gameArray: string[][]): resultType => {
   return result;
 };
 
-export const gameCompleteChecker = (gameArray: string[][]) => {
+export const gameCompleteChecker = (gameArray: String[][]) => {
   const result = getResult(gameArray);
   return (
     result == "PLAYER_1_WIN" || result == "PLAYER_2_WIN" || result == "TIE"
   );
 };
 
-const evaluate = (gameArray: string[][]) => {
+const evaluate = (gameArray: String[][]) => {
   const result = getResult(gameArray);
   if (result == "PLAYER_1_WIN") return 10;
   else if (result == "PLAYER_2_WIN") return -10;
@@ -94,7 +95,7 @@ const evaluate = (gameArray: string[][]) => {
 };
 
 const minimax = (
-  gameArray: string[][],
+  gameArray: String[][],
   player1Symbol: string,
   player2Symbol: string,
   emptySymbol: string,
@@ -129,7 +130,7 @@ const minimax = (
 };
 
 export const bestMove = (
-  gameArray: string[][],
+  gameArray: String[][],
   player1Symbol: string,
   player2Symbol: string,
   emptySymbol: string,
@@ -137,31 +138,111 @@ export const bestMove = (
 ) => {
   const matrix = Array.from(gameArray);
 
-  let bestmove = [-1, -1];
+  let bestmoveToPlay = null as number[] | null;
   let bestvalue = turn === "player1" ? -1000 : 1000;
   for (const row in matrix) {
     for (const col in matrix[row]) {
       if (matrix[row][col] === emptySymbol) {
         matrix[row][col] = turn === "player1" ? player1Symbol : player2Symbol;
+        const nextTurn: turnType = turn === "player1" ? "player2" : "player1";
         let movevalue = minimax(
           gameArray,
           player1Symbol,
           player2Symbol,
           emptySymbol,
-          turn
+          nextTurn
         );
         matrix[row][col] = emptySymbol;
         if (turn === "player1" && bestvalue < movevalue) {
-          bestmove = [Number(row), Number(col)];
+          bestmoveToPlay = [Number(row), Number(col)];
           bestvalue = movevalue;
         } else if (turn === "player2" && bestvalue > movevalue) {
-          bestmove = [Number(row), Number(col)];
+          bestmoveToPlay = [Number(row), Number(col)];
           bestvalue = movevalue;
         }
       }
     }
   }
 
-  return bestMove;
+  return bestmoveToPlay;
 };
 
+export const randomMove = (gameState: String[][], emptySymbol: string) => {
+  const availableMoves = gameState
+    .map((row, rowIndex) =>
+      row.map((el, columIndex) =>
+        el === emptySymbol ? [rowIndex, columIndex] : null
+      )
+    )
+    .flat()
+    .filter(Boolean);
+
+  const move =
+    availableMoves.length > 0
+      ? availableMoves[Math.floor(Math.random() * availableMoves.length)]
+      : null;
+  return move;
+};
+
+const playComputerMove = () => {
+  const gameLevel = store.getState().player2.gameLevel;
+  const currentGameState = store.getState().game.currentState;
+  const newGameState = currentGameState.map((row) => row.map((el) => el));
+  const player1Symbol = store.getState().game.player1Symbol.symbol;
+  const player2Symbol = store.getState().game.player2Symbol.symbol;
+  const emptySymbol = store.getState().game.emptySymbol;
+  let move: number[] | null = null;
+  switch (gameLevel) {
+    case "High":
+      move = bestMove(
+        newGameState,
+        player1Symbol,
+        player2Symbol,
+        emptySymbol,
+        "player2"
+      );
+      break;
+    case "Low":
+      move = randomMove(newGameState, emptySymbol);
+      break;
+    case "Medium":
+      move =
+        Math.random() > 0.5
+          ? bestMove(
+              newGameState,
+              player1Symbol,
+              player2Symbol,
+              emptySymbol,
+              "player2"
+            )
+          : randomMove(newGameState, emptySymbol);
+      break;
+  }
+  if (move !== null) {
+    newGameState[move[0]][move[1]] = player2Symbol;
+    store.dispatch(setGameBoard(newGameState));
+    store.dispatch(setNextTurn());
+  }
+};
+
+export const playMove = (row: number, column: number) => {
+  const turn = store.getState().game.turn;
+  const currentGameState = store.getState().game.currentState;
+  const newGameState = currentGameState.map((row) => row.map((el) => el));
+
+  if (turn === "player1") {
+    const player1Symbol = store.getState().game.player1Symbol;
+    newGameState[row][column] = player1Symbol.symbol;
+    store.dispatch(setGameBoard(newGameState));
+    store.dispatch(setNextTurn());
+    const player2Mode = store.getState().player2.mode;
+    if (player2Mode === "computer") {
+      playComputerMove();
+    }
+  } else {
+    const player2Symbol = store.getState().game.player2Symbol;
+    newGameState[row][column] = player2Symbol.symbol;
+    store.dispatch(setGameBoard(newGameState));
+    store.dispatch(setNextTurn());
+  }
+};

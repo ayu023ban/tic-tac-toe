@@ -1,5 +1,5 @@
-const xMark = "public/images/x.svg";
-const oMark = "public/images/o.svg";
+const xMark = "/images/x.svg";
+const oMark = "/images/o.svg";
 export const RESULT_TYPE = {
   PLAYER_1_WIN: "PLAYER_1_WIN",
   PLAYER_2_WIN: "PLAYER_2_WIN",
@@ -20,6 +20,6 @@ export const SOUNDS = {
 } as const;
 
 export const SYMBOLS = [
-  { symbol: "X", image: xMark },
-  { symbol: "O", image: oMark },
+  { symbol: "X", image: xMark as string },
+  { symbol: "O", image: oMark as string },
 ];

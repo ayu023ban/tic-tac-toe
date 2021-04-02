@@ -13,7 +13,6 @@ const ScoreBoard = ({ name = "player1", score = 10 }: AppProps) => {
     <div className={styles.scoreboard}>
       <span
         onClick={() => {
-          console.log("dfs");
           dispatch(setGameBoardDimension([2, 3]));
         }}
         className={styles.name}
