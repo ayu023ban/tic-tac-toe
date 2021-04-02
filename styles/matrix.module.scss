@@ -1,0 +1,14 @@
+.container {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto;
+  width: 400px;
+  height: 400px;
+  z-index: 5;
+  grid-template-rows: repeat(3, 1fr);
+}
+.row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3, 1fr);
+}
