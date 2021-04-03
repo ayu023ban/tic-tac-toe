@@ -1,8 +1,8 @@
 const path = require("path");
-var webpack = require('webpack');
+var webpack = require("webpack");
 
 module.exports = {
-  stories: ["../stories/*.stories.tsx"],
+  stories: ["../stories/*.stories.tsx", "../stories/*.stories.jsx"],
   addons: [
     "@storybook/addon-essentials",
     "@storybook/addon-viewport",

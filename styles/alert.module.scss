@@ -1,37 +1,37 @@
-@import './animations.scss';
+@import "./animations.scss";
 
 .danger {
-    // color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    border-top-color: #f1b0b7;
-    color: #491217;
-  }
+  // color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  border-top-color: #f1b0b7;
+  color: #491217;
+}
 .primary {
-    // color: #004085;
-    background-color: #cce5ff;
-    border-color: #b8daff;
-    border-top-color: #9fcdff;
-    color: #002752;
-  }
+  // color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  border-top-color: #9fcdff;
+  color: #002752;
+}
 .warning {
-    // color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba;
-    border-top-color: #ffe8a1;
-    color: #533f03;
-  }
+  // color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  border-top-color: #ffe8a1;
+  color: #533f03;
+}
 
-  .animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-  }
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
 
-  .game-status {
-    padding: 0.663rem 1.25rem;
-    font-size: 24px;
-    z-index: 3;
-    width: max-content;
-  }
+.game-status {
+  padding: 0.663rem 1.25rem;
+  font-size: 24px;
+  z-index: 3;
+  width: max-content;
+}

@@ -1,5 +1,6 @@
 import { getColumn, getDiagonals } from ".";
 import { setGameBoard, setNextTurn } from "../redux/game/reducer";
+import { setResult } from "../redux/result/reducer";
 import { store } from "../redux/store";
 import { resultType, turnType } from "./types";
 
@@ -229,20 +230,32 @@ export const playMove = (row: number, column: number) => {
   const turn = store.getState().game.turn;
   const currentGameState = store.getState().game.currentState;
   const newGameState = currentGameState.map((row) => row.map((el) => el));
-
+  const oldResult = getResult(newGameState);
   if (turn === "player1") {
     const player1Symbol = store.getState().game.player1Symbol;
     newGameState[row][column] = player1Symbol.symbol;
     store.dispatch(setGameBoard(newGameState));
-    store.dispatch(setNextTurn());
-    const player2Mode = store.getState().player2.mode;
-    if (player2Mode === "computer") {
-      playComputerMove();
+    const newResult = getResult(newGameState);
+    if (newResult !== oldResult) {
+      store.dispatch(setResult(newResult));
+    }
+    if (newResult === "NOT_DECLARED") {
+      store.dispatch(setNextTurn());
+      const player2Mode = store.getState().player2.mode;
+      if (player2Mode === "computer") {
+        setTimeout(() => playComputerMove(), 300);
+      }
     }
   } else {
     const player2Symbol = store.getState().game.player2Symbol;
     newGameState[row][column] = player2Symbol.symbol;
     store.dispatch(setGameBoard(newGameState));
-    store.dispatch(setNextTurn());
+    const newResult = getResult(newGameState);
+    if (newResult !== oldResult) {
+      store.dispatch(setResult(newResult));
+    }
+    if (newResult === "NOT_DECLARED") {
+      store.dispatch(setNextTurn());
+    }
   }
 };

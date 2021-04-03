@@ -5,6 +5,7 @@ import sounds from "./sounds/reducers";
 import player1 from "./player1/reducer";
 import player2 from "./player2/reducer";
 import game from "./game/reducer";
+import general from "./general/reducer";
 
 const combinedReducer = combineReducers({
   result,
@@ -13,6 +14,7 @@ const combinedReducer = combineReducers({
   player1,
   player2,
   game,
+  general,
 });
 
 export default combinedReducer;

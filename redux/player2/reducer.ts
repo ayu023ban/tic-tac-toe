@@ -16,9 +16,12 @@ const playerSlice = createSlice({
     setGameLevel(state, { payload }: PayloadAction<gameLevelType>) {
       state.gameLevel = payload;
     },
+    setMode(state, { payload }: PayloadAction<player2ModeType>) {
+      state.mode = payload;
+    },
   },
 });
 
-export const { setPlayer2Name } = playerSlice.actions;
+export const { setPlayer2Name, setGameLevel, setMode } = playerSlice.actions;
 
 export default playerSlice.reducer;

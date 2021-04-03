@@ -43,20 +43,19 @@ const Cell = ({ row, column }: AppProps) => {
   const player2Symbol = useAppSelector((state) => state.game.player2Symbol);
   const emptySymbol = useAppSelector((state) => state.game.emptySymbol);
   const currentGameState = useAppSelector((state) => state.game.currentState);
-
   const gameBoardDimension = useAppSelector(
     (state) => state.game.gameBoardDimension
   );
+  const result = useAppSelector((state) => state.result.result);
   const classes = getClasses(row, column, gameBoardDimension);
-  const dispatch = useDispatch();
 
   const play = () => {
-    const newGameState = currentGameState.map((row) => row.map((el) => el));
-    if (newGameState[row][column] === emptySymbol) {
-      playMove(row, column);
-      return true;
+    if (result === "NOT_DECLARED") {
+      const newGameState = currentGameState.map((row) => row.map((el) => el));
+      if (newGameState[row][column] === emptySymbol) {
+        playMove(row, column);
+      }
     }
-    return false;
   };
 
   return (

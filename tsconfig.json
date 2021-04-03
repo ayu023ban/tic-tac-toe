@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "next.config.js", "pages/index.js"  ],
+, "next.config.js", "pages/index.js", "stories/scoreBoard.stories.jsx", "stories/matrix.stories.jsx", "stories/foreground.stories.jsx", "stories/button2.stories.js", "stories/button.stories.js"  ],
   "exclude": [
     "node_modules"
   ]

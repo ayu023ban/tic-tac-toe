@@ -9,3 +9,10 @@ export type SoundType = typeof soundTypes[number] | null;
 export type gameLevelType = "Low" | "Medium" | "High";
 export type turnType = "player1" | "player2";
 export type player2ModeType = "human" | "computer";
+
+export type pageType =
+  | "modeSelect"
+  | "levelSelect"
+  | "game"
+  | "confirmReset"
+  | "profileSelect";

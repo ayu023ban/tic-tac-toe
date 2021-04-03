@@ -1,0 +1,21 @@
+.heading {
+  color: #000000d1;
+  font-size: 85px;
+  text-align: center;
+  margin-top: 6rem;
+}
+.question {
+  text-align: center;
+  color: #3b87cf;
+  font-size: 48px;
+  margin-top: 5rem;
+}
+.optionContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5rem;
+}
+.container {
+  position: absolute;
+  width: 100%;
+}

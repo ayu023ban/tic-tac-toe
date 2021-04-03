@@ -1,5 +1,5 @@
 import { RESULT_TYPE } from "../../constants";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { resultType } from "../../utils/types";
 
 type initialStateType = {
@@ -14,21 +14,12 @@ const resultSlice = createSlice({
   name: "result",
   initialState,
   reducers: {
-    win(state) {
-      state.result = RESULT_TYPE.PLAYER_1_WIN;
-    },
-    lose(state) {
-      state.result = RESULT_TYPE.PLAYER_2_WIN;
-    },
-    tie(state) {
-      state.result = RESULT_TYPE.TIE;
-    },
-    reset(state) {
-      state.result = RESULT_TYPE.NOT_DECLARED;
+    setResult(state, { payload }: PayloadAction<resultType>) {
+      state.result = payload;
     },
   },
 });
 
-export const { win, lose, tie, reset } = resultSlice.actions;
+export const { setResult } = resultSlice.actions;
 
 export default resultSlice.reducer;

@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy } from "react";
 import useSound from "use-sound";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { resetSound } from "../redux/sounds/reducers";
-import boardSound from "../sounds/board.mp3";
-import bubbleSound from "../sounds/bubble.mp3";
-import loseSound from "../sounds/lose.mp3";
-import menuSound from "../sounds/menu.mp3";
-import oMarkSound from "../sounds/oMark.mp3";
-import swipeSound from "../sounds/swipe.mp3";
-import tieSound from "../sounds/tie.mp3";
-import winSound from "../sounds/win.mp3";
-import xMarkSound from "../sounds/xMark.mp3";
+const boardSound = require("./board.mp3");
+const bubbleSound = require("./bubble.mp3");
+const loseSound = require("./lose.mp3");
+const menuSound = require("./menu.mp3");
+const oMarkSound = require("./oMark.mp3");
+const swipeSound = require("./swipe.mp3");
+const tieSound = require("./tie.mp3");
+const winSound = require("./win.mp3");
+const xMarkSound = require("./xMark.mp3");
 
 type AppProps = {
   children: JSX.Element;
