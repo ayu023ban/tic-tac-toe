@@ -112,6 +112,7 @@ function minimax(gameArray, depth, turnOfPlayer1) {
     return best;
   }
 }
+
 function bestMove(gameArray) {
   let bestmove = -1;
   let bestvalue = 1000;
