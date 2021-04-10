@@ -4,6 +4,7 @@ import Cell from "./cell";
 import styles from "../styles/matrix.module.scss";
 import { motion } from "framer-motion";
 import { playComputerMove } from "../utils/game";
+import { usePrevious } from "../utils/hooks";
 
 type AppProps = {};
 
@@ -21,11 +22,17 @@ const Matrix = ({}: AppProps) => {
   );
   const player2Mode = useAppSelector((state) => state.player2.mode);
   const turn = useAppSelector((state) => state.game.turn);
+  const result = useAppSelector((state) => state.result.result);
+  const prevResult = usePrevious(result);
   React.useEffect(() => {
-    if (player2Mode === "computer" && turn === "player2") {
-      setTimeout(() => playComputerMove(), 300);
+    if (
+      result === "NOT_DECLARED" &&
+      player2Mode === "computer" &&
+      turn === "player2"
+    ) {
+      setTimeout(() => playComputerMove(), prevResult !== result ? 100 : 300);
     }
-  }, [player2Mode, turn]);
+  }, [result, turn]);
 
   return (
     <motion.div className={styles.container}>

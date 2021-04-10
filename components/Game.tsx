@@ -10,27 +10,32 @@ import { setResult } from "../redux/result/reducer";
 import { selectPage, setDirection } from "../redux/general/reducer";
 import { motion } from "framer-motion";
 import { mute, unmute } from "../redux/settings/reducers";
+import { directionType } from "../utils/types";
 
 const gameVarients = {
-  initial: { scale: 1, x: 200, opacity: 0 },
+  initial: (direction: directionType) => ({
+    x: direction === "right2left" ? 200 : -200,
+    opacity: 0,
+  }),
   enter: {
     scale: 1,
     opacity: 1,
     x: 0,
     transition: { duration: 0.5, ease: [0.48, 0.15, 0.25, 0.96] },
   },
-  exit: {
-    scale: 1,
+  exit: (direction: directionType) => ({
     opacity: 0,
-    x: 200,
+    x: direction === "right2left" ? -200 : 200,
     transition: { duration: 0.5, ease: [0.48, 0.15, 0.25, 0.96] },
-  },
+  }),
 };
 
 const Game = () => {
   const result = useAppSelector((state) => state.result.result);
   const dispatch = useAppDispatch();
   const isMute = useAppSelector((state) => state.settings.isMute);
+  const direction = useAppSelector((state) => state.general.direction);
+
   const restartMatch = () => {
     dispatch(restart());
     dispatch(setResult("NOT_DECLARED"));
@@ -39,10 +44,9 @@ const Game = () => {
     dispatch(nextRound());
     dispatch(setResult("NOT_DECLARED"));
   };
-  const resetWhole = () => {
-    restartMatch();
+  const goToConfirm = () => {
     dispatch(setDirection("left2right"));
-    dispatch(selectPage("modeSelect"));
+    dispatch(selectPage("confirmReset"));
   };
   const toggleSound = () => {
     isMute ? dispatch(unmute()) : dispatch(mute());
@@ -53,6 +57,7 @@ const Game = () => {
       initial="initial"
       animate="enter"
       exit="exit"
+      custom={direction}
       variants={gameVarients}
     >
       <div className={styles.alertContainer}>
@@ -66,7 +71,7 @@ const Game = () => {
           text={result === "NOT_DECLARED" ? "Restart" : "Next Round"}
           onClick={result === "NOT_DECLARED" ? restartMatch : nextMatch}
         />
-        <Button2 type="restart" onClick={resetWhole} />
+        <Button2 type="restart" onClick={goToConfirm} />
       </div>
     </motion.div>
   );

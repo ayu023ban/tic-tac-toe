@@ -5,6 +5,7 @@ import { useAppSelector } from "../redux/hooks";
 import SelectLevel from "../components/SelectLevel";
 import Game from "../components/Game";
 import SelectMode from "../components/SelectMode";
+import ConfirmReset from "../components/confirmReset";
 
 export default function Home() {
   const page = useAppSelector((state) => state.general.page);
@@ -19,6 +20,8 @@ export default function Home() {
             <SelectLevel key={page} />
           ) : page === "game" ? (
             <Game />
+          ) : page === "confirmReset" ? (
+            <ConfirmReset key={page} />
           ) : (
             <div></div>
           )}
