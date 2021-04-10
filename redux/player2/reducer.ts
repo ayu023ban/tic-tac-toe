@@ -4,6 +4,7 @@ const initialState = {
   profile: { name: "player2" },
   mode: "computer" as player2ModeType,
   gameLevel: "Medium" as gameLevelType,
+  score: 0,
 };
 
 const playerSlice = createSlice({
@@ -19,9 +20,17 @@ const playerSlice = createSlice({
     setMode(state, { payload }: PayloadAction<player2ModeType>) {
       state.mode = payload;
     },
+    setPlayer2Score(state, { payload }: PayloadAction<number>) {
+      state.score = payload;
+    },
   },
 });
 
-export const { setPlayer2Name, setGameLevel, setMode } = playerSlice.actions;
+export const {
+  setPlayer2Name,
+  setGameLevel,
+  setMode,
+  setPlayer2Score,
+} = playerSlice.actions;
 
 export default playerSlice.reducer;

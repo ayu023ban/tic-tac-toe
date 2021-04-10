@@ -49,8 +49,8 @@ const Menu = ({ heading, question, options, key }: AppProps) => {
       <motion.div className={menuStyle.heading}>{heading}</motion.div>
       <motion.div className={menuStyle.question}>{question}</motion.div>
       <motion.div className={menuStyle.optionContainer}>
-        {options.map((option) => (
-          <Button1 text={option.text} onClick={option.onClick} />
+        {options.map((option, index) => (
+          <Button1 key={index} text={option.text} onClick={option.onClick} />
         ))}
       </motion.div>
     </motion.div>
