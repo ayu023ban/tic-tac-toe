@@ -3,9 +3,7 @@ import Image from "next/image";
 import { useAppSelector } from "../redux/hooks";
 import styles from "../styles/cell.module.scss";
 import { AnimatePresence, motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { setGameBoard } from "../redux/game/reducer";
-import { playMove } from "../utils/game";
+import { playerMove } from "../utils/game";
 type AppProps = {
   row: number;
   column: number;
@@ -14,7 +12,7 @@ type AppProps = {
 const getClasses = (
   row: number,
   column: number,
-  gameBoardDimension: [number,number]
+  gameBoardDimension: [number, number]
 ) => {
   let classes = [];
   if (row > 0) classes.push(styles["border-up"]);
@@ -53,7 +51,7 @@ const Cell = ({ row, column }: AppProps) => {
     if (result === "NOT_DECLARED") {
       const newGameState = currentGameState.map((row) => row.map((el) => el));
       if (newGameState[row][column] === emptySymbol) {
-        playMove(row, column);
+        playerMove(row, column);
       }
     }
   };

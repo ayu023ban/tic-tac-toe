@@ -9,6 +9,7 @@ import { nextRound, restart } from "../redux/game/reducer";
 import { setResult } from "../redux/result/reducer";
 import { selectPage, setDirection } from "../redux/general/reducer";
 import { motion } from "framer-motion";
+import { mute, unmute } from "../redux/settings/reducers";
 
 const gameVarients = {
   initial: { scale: 1, x: 200, opacity: 0 },
@@ -29,20 +30,23 @@ const gameVarients = {
 const Game = () => {
   const result = useAppSelector((state) => state.result.result);
   const dispatch = useAppDispatch();
-
+  const isMute = useAppSelector((state) => state.settings.isMute);
   const restartMatch = () => {
     dispatch(restart());
     dispatch(setResult("NOT_DECLARED"));
   };
   const nextMatch = () => {
     dispatch(nextRound());
+    dispatch(setResult("NOT_DECLARED"));
   };
   const resetWhole = () => {
     restartMatch();
     dispatch(setDirection("left2right"));
     dispatch(selectPage("modeSelect"));
   };
-
+  const toggleSound = () => {
+    isMute ? dispatch(unmute()) : dispatch(mute());
+  };
   return (
     <motion.div
       className={styles.container}
@@ -57,7 +61,7 @@ const Game = () => {
 
       <Matrix />
       <div className={styles.lower_container}>
-        <Button2 type="soundOn" />
+        <Button2 type={isMute ? "soundOff" : "soundOn"} onClick={toggleSound} />
         <Button1
           text={result === "NOT_DECLARED" ? "Restart" : "Next Round"}
           onClick={result === "NOT_DECLARED" ? restartMatch : nextMatch}

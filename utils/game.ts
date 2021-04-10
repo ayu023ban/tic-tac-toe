@@ -192,6 +192,8 @@ export const playComputerMove = () => {
   const player1Symbol = store.getState().game.player1Symbol.symbol;
   const player2Symbol = store.getState().game.player2Symbol.symbol;
   const emptySymbol = store.getState().game.emptySymbol;
+  const oldResult = getResult(newGameState);
+
   let move: number[] | null = null;
   switch (gameLevel) {
     case "High":
@@ -222,36 +224,37 @@ export const playComputerMove = () => {
   if (move !== null) {
     newGameState[move[0]][move[1]] = player2Symbol;
     store.dispatch(setGameBoard(newGameState));
-    store.dispatch(setNextTurn());
+    const newResult = getResult(newGameState);
+    if (newResult !== oldResult) {
+      store.dispatch(setResult(newResult));
+    }
+    if (newResult === "NOT_DECLARED") {
+      store.dispatch(setNextTurn());
+    }
   }
 };
 
-export const playMove = (row: number, column: number) => {
+export const playerMove = (row: number, column: number) => {
   const turn = store.getState().game.turn;
   const currentGameState = store.getState().game.currentState;
   const newGameState = currentGameState.map((row) => row.map((el) => el));
   const oldResult = getResult(newGameState);
+
   if (turn === "player1") {
     const player1Symbol = store.getState().game.player1Symbol;
     newGameState[row][column] = player1Symbol.symbol;
-    store.dispatch(setGameBoard(newGameState));
-    const newResult = getResult(newGameState);
-    if (newResult !== oldResult) {
-      store.dispatch(setResult(newResult));
-    }
-    if (newResult === "NOT_DECLARED") {
-      store.dispatch(setNextTurn());
-    }
   } else {
     const player2Symbol = store.getState().game.player2Symbol;
     newGameState[row][column] = player2Symbol.symbol;
-    store.dispatch(setGameBoard(newGameState));
-    const newResult = getResult(newGameState);
-    if (newResult !== oldResult) {
-      store.dispatch(setResult(newResult));
-    }
-    if (newResult === "NOT_DECLARED") {
-      store.dispatch(setNextTurn());
-    }
   }
+  store.dispatch(setGameBoard(newGameState));
+  const newResult = getResult(newGameState);
+  if (newResult !== oldResult) {
+    store.dispatch(setResult(newResult));
+  }
+  if (newResult === "NOT_DECLARED") {
+    store.dispatch(setNextTurn());
+  }
+
+
 };

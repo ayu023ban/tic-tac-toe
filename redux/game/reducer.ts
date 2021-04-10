@@ -38,6 +38,7 @@ const gameSlice = createSlice({
         state.gameBoardDimension,
         state.emptySymbol
       );
+      state.turn = state.firstTurn;
     },
     nextRound(state) {
       state.currentState = getEmptyGameArray(

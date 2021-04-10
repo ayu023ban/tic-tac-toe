@@ -1,45 +1,37 @@
-import { motion } from "framer-motion";
 import * as React from "react";
 import { useAppDispatch } from "../redux/hooks";
-import menuStyle from "../styles/menu.module.scss";
-import Button1 from "./common/button1";
 import Menu from "./common/menu";
 import { setMode } from "../redux/player2/reducer";
 import { playSound } from "../redux/sounds/reducers";
 import { selectPage, setDirection } from "../redux/general/reducer";
-import { directionType } from "../utils/types";
 
-const SelectMode = ({ direction }: { direction: directionType }) => {
+const SelectMode = () => {
   const dispatch = useAppDispatch();
   return (
-    <Menu>
-      <>
-        <motion.div className={menuStyle.heading}>Tic Tac Toe</motion.div>
-        <motion.div className={menuStyle.question}>
-          Want to play multiplayer or With the Greate A.I?
-        </motion.div>
-        <motion.div className={menuStyle.optionContainer}>
-          <Button1
-            text={"Multiplayer"}
-            onClick={() => {
-              dispatch(playSound("swipeSound"));
-              dispatch(setMode("human"));
-              dispatch(selectPage("game"));
-              dispatch(setDirection("right2left"));
-            }}
-          />
-          <Button1
-            text={"Computer"}
-            onClick={() => {
-              dispatch(playSound("swipeSound"));
-              dispatch(setMode("computer"));
-              dispatch(selectPage("levelSelect"));
-              dispatch(setDirection("right2left"));
-            }}
-          />
-        </motion.div>
-      </>
-    </Menu>
+    <Menu
+      heading={"Tic Tac Toe"}
+      question={"Want to play multiplayer or With the Greate A.I?"}
+      options={[
+        {
+          text: "Multiplayer",
+          onClick: () => {
+            dispatch(playSound("swipeSound"));
+            dispatch(setMode("human"));
+            dispatch(selectPage("game"));
+            dispatch(setDirection("right2left"));
+          },
+        },
+        {
+          text: "Computer",
+          onClick: () => {
+            dispatch(playSound("swipeSound"));
+            dispatch(setMode("computer"));
+            dispatch(selectPage("levelSelect"));
+            dispatch(setDirection("right2left"));
+          },
+        },
+      ]}
+    />
   );
 };
 export default SelectMode;

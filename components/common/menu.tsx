@@ -3,6 +3,7 @@ import React from "react";
 import { useAppSelector } from "../../redux/hooks";
 import menuStyle from "../../styles/menu.module.scss";
 import { directionType, pageType } from "../../utils/types";
+import Button1 from "./button1";
 const menuVarient = {
   initial: (direction: directionType) => ({
     scale: 1,
@@ -24,10 +25,16 @@ const menuVarient = {
 };
 
 type AppProps = {
-  children: JSX.Element;
   key?: string;
+  heading: string;
+  question: string;
+  options: Array<{
+    text: string;
+    onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+    disabled?: boolean;
+  }>;
 };
-const Menu = ({ children, key }: AppProps) => {
+const Menu = ({ heading, question, options, key }: AppProps) => {
   const direction = useAppSelector((state) => state.general.direction);
   return (
     <motion.div
@@ -39,7 +46,13 @@ const Menu = ({ children, key }: AppProps) => {
       variants={menuVarient}
       className={menuStyle.container}
     >
-      {children}
+      <motion.div className={menuStyle.heading}>{heading}</motion.div>
+      <motion.div className={menuStyle.question}>{question}</motion.div>
+      <motion.div className={menuStyle.optionContainer}>
+        {options.map((option) => (
+          <Button1 text={option.text} onClick={option.onClick} />
+        ))}
+      </motion.div>
     </motion.div>
   );
 };

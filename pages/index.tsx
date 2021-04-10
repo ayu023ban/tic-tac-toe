@@ -14,9 +14,9 @@ export default function Home() {
       <ForeGround>
         <AnimatePresence custom={direction}>
           {page === "modeSelect" ? (
-            <SelectMode key={page} direction={direction} />
+            <SelectMode key={page} />
           ) : page === "levelSelect" ? (
-            <SelectLevel key={page} direction={direction} />
+            <SelectLevel key={page} />
           ) : page === "game" ? (
             <Game />
           ) : (
