@@ -6,9 +6,10 @@ import Button1 from "./common/button1";
 import Menu from "./common/menu";
 import { setMode } from "../redux/player2/reducer";
 import { playSound } from "../redux/sounds/reducers";
-import { selectPage } from "../redux/general/reducer";
+import { selectPage, setDirection } from "../redux/general/reducer";
+import { directionType } from "../utils/types";
 
-const SelectMode = () => {
+const SelectMode = ({ direction }: { direction: directionType }) => {
   const dispatch = useAppDispatch();
   return (
     <Menu>
@@ -24,6 +25,7 @@ const SelectMode = () => {
               dispatch(playSound("swipeSound"));
               dispatch(setMode("human"));
               dispatch(selectPage("game"));
+              dispatch(setDirection("right2left"));
             }}
           />
           <Button1
@@ -32,6 +34,7 @@ const SelectMode = () => {
               dispatch(playSound("swipeSound"));
               dispatch(setMode("computer"));
               dispatch(selectPage("levelSelect"));
+              dispatch(setDirection("right2left"));
             }}
           />
         </motion.div>

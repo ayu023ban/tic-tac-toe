@@ -8,14 +8,15 @@ import SelectMode from "../components/SelectMode";
 
 export default function Home() {
   const page = useAppSelector((state) => state.general.page);
+  const direction = useAppSelector((state) => state.general.direction);
   return (
     <div className={style.container}>
       <ForeGround>
-        <AnimatePresence>
+        <AnimatePresence custom={direction}>
           {page === "modeSelect" ? (
-            <SelectMode key={page} />
+            <SelectMode key={page} direction={direction} />
           ) : page === "levelSelect" ? (
-            <SelectLevel key={page} />
+            <SelectLevel key={page} direction={direction} />
           ) : page === "game" ? (
             <Game />
           ) : (

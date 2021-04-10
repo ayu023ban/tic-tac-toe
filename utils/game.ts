@@ -185,7 +185,7 @@ export const randomMove = (gameState: String[][], emptySymbol: string) => {
   return move;
 };
 
-const playComputerMove = () => {
+export const playComputerMove = () => {
   const gameLevel = store.getState().player2.gameLevel;
   const currentGameState = store.getState().game.currentState;
   const newGameState = currentGameState.map((row) => row.map((el) => el));
@@ -241,10 +241,6 @@ export const playMove = (row: number, column: number) => {
     }
     if (newResult === "NOT_DECLARED") {
       store.dispatch(setNextTurn());
-      const player2Mode = store.getState().player2.mode;
-      if (player2Mode === "computer") {
-        setTimeout(() => playComputerMove(), 300);
-      }
     }
   } else {
     const player2Symbol = store.getState().game.player2Symbol;

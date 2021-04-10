@@ -16,3 +16,5 @@ export type pageType =
   | "game"
   | "confirmReset"
   | "profileSelect";
+
+export type directionType = "left2right" | "right2left";

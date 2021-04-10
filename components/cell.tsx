@@ -14,7 +14,7 @@ type AppProps = {
 const getClasses = (
   row: number,
   column: number,
-  gameBoardDimension: number[]
+  gameBoardDimension: [number,number]
 ) => {
   let classes = [];
   if (row > 0) classes.push(styles["border-up"]);

@@ -3,22 +3,7 @@ import { useAppSelector } from "../redux/hooks";
 import Cell from "./cell";
 import styles from "../styles/matrix.module.scss";
 import { motion } from "framer-motion";
-
-const matrixVarients = {
-  initial: { scale: 0.8, x: -200, opacity: 0 },
-  enter: {
-    scale: 1,
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5, ease: [0.48, 0.15, 0.25, 0.96] },
-  },
-  exit: {
-    scale: 0.8,
-    opacity: 0,
-    x: -200,
-    transition: { duration: 0.2, ease: [0.48, 0.15, 0.25, 0.96] },
-  },
-};
+import { playComputerMove } from "../utils/game";
 
 type AppProps = {};
 
@@ -34,17 +19,16 @@ const Matrix = ({}: AppProps) => {
   const gameBoardDimension = useAppSelector(
     (state) => state.game.gameBoardDimension
   );
-  const currentGameState = useAppSelector((state) => state.game.currentState);
-  const player1Symbol = useAppSelector((state) => state.game.player1Symbol);
-  const player2Symbol = useAppSelector((state) => state.game.player2Symbol);
+  const player2Mode = useAppSelector((state) => state.player2.mode);
+  const turn = useAppSelector((state) => state.game.turn);
+  React.useEffect(() => {
+    if (player2Mode === "computer" && turn === "player2") {
+      setTimeout(() => playComputerMove(), 300);
+    }
+  }, [player2Mode, turn]);
+
   return (
-    <motion.div
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      variants={matrixVarients}
-      className={styles.container}
-    >
+    <motion.div className={styles.container}>
       {Array.apply(null, Array(gameBoardDimension[0])).map((el, index) => {
         return (
           <div className={styles.row} key={index}>

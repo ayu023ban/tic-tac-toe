@@ -15,15 +15,22 @@ const icons = {
 type Props = {
   text?: string;
   type: "soundOn" | "soundOff" | "restart" | "other";
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
 
-const Button2: FC<Props> = ({ text, type = "other" }): ReactElement => {
+const Button2: FC<Props> = ({
+  text,
+  type = "other",
+  onClick,
+}): ReactElement => {
   return type === "other" ? (
-    <button className={styles.container}>
+    <button className={styles.container} onClick={onClick}>
       <span className={styles.icon}>{text}</span>
     </button>
   ) : (
-    <button className={styles.container}>{icons[type]}</button>
+    <button className={styles.container} onClick={onClick}>
+      {icons[type]}
+    </button>
   );
 };
 

@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { pageType } from "../../utils/types";
+import { directionType, pageType } from "../../utils/types";
 
 type reducerType = {
   page: pageType;
+  direction: directionType;
 };
 const initialState: reducerType = {
   page: "modeSelect",
+  direction: "right2left",
 };
 
 const soundSlice = createSlice({
@@ -15,9 +17,12 @@ const soundSlice = createSlice({
     selectPage(state, { payload }: PayloadAction<pageType>) {
       state.page = payload;
     },
+    setDirection(state, { payload }: PayloadAction<directionType>) {
+      state.direction = payload;
+    },
   },
 });
 
-export const { selectPage } = soundSlice.actions;
+export const { selectPage, setDirection } = soundSlice.actions;
 
 export default soundSlice.reducer;

@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import * as React from "react";
-import { selectPage } from "../redux/general/reducer";
+import { selectPage, setDirection } from "../redux/general/reducer";
 import { useAppDispatch } from "../redux/hooks";
 import { setGameLevel } from "../redux/player2/reducer";
 import { playSound } from "../redux/sounds/reducers";
 import menuStyle from "../styles/menu.module.scss";
+import { directionType } from "../utils/types";
 import Button1 from "./common/button1";
 import Menu from "./common/menu";
 
-const SelectLevel = () => {
+const SelectLevel = ({ direction }: { direction: directionType }) => {
   const dispatch = useAppDispatch();
   return (
     <Menu>
@@ -22,6 +23,7 @@ const SelectLevel = () => {
               dispatch(playSound("swipeSound"));
               dispatch(setGameLevel("Low"));
               dispatch(selectPage("game"));
+              setDirection("right2left");
             }}
           />
           <Button1
@@ -30,6 +32,7 @@ const SelectLevel = () => {
               dispatch(playSound("swipeSound"));
               dispatch(setGameLevel("Medium"));
               dispatch(selectPage("game"));
+              setDirection("right2left");
             }}
           />
           <Button1
@@ -38,6 +41,7 @@ const SelectLevel = () => {
               dispatch(playSound("swipeSound"));
               dispatch(setGameLevel("High"));
               dispatch(selectPage("game"));
+              setDirection("right2left");
             }}
           />
         </motion.div>

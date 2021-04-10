@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+}
+
+.lower_container {
+  justify-content: space-around;
+  display: flex;
+  width: 100%;
+}
+.alertContainer {
+  height: 3rem;
+}
